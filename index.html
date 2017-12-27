@@ -271,6 +271,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="blog.fushily.cn/2017/12/27/图解HTTP读书笔记一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="墨月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖夜雨十年灯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/27/图解HTTP读书笔记一/" itemprop="url">图解HTTP读书笔记一</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T17:57:55+08:00">
+                2017-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="图解HTTP协议读书笔记一"><a href="#图解HTTP协议读书笔记一" class="headerlink" title="图解HTTP协议读书笔记一"></a>图解HTTP协议读书笔记一</h1><p>个人阅读《图解HTTP》的记录以及总结</p>
+<p>##HTTP协议的概念</p>
+<h2 id="HTTP通常被译为超文本传输协议-但这种译法并不严谨-严谨的译法应为”超文本转移协议”，HTTP协议也是客户端与服务端的请求和应答一种标准，我们的WEB就是使用HTTP协议作为规范"><a href="#HTTP通常被译为超文本传输协议-但这种译法并不严谨-严谨的译法应为”超文本转移协议”，HTTP协议也是客户端与服务端的请求和应答一种标准，我们的WEB就是使用HTTP协议作为规范" class="headerlink" title="  HTTP通常被译为超文本传输协议,但这种译法并不严谨,严谨的译法应为”超文本转移协议”，HTTP协议也是客户端与服务端的请求和应答一种标准，我们的WEB就是使用HTTP协议作为规范"></a>  HTTP通常被译为超文本传输协议,但这种译法并不严谨,严谨的译法应为”超文本转移协议”，HTTP协议也是客户端与服务端的请求和应答一种标准，我们的WEB就是使用HTTP协议作为规范</h2><blockquote>
+<p>由于WEB是建立在HTTP协议上通信的，而通常互联网是建立在TCP/IP协议族的基础上运作的，HTTP是TCP/IP的一个子集。所以要了解HTTP协议我们有必要了解下TCP/IP协议</p>
+</blockquote>
+<hr>
+<p>##对TCP/IP理解</p>
+<p>###1.TCP/IP协议族里重要的一点就是分层</p>
+<ul>
+<li>TCP/IP分为应用层、传输层、网络层、和数据链路层<br>####应用层：决定了向用户提供应用服务时通信的活动。</li>
+<li>TCP/IP协议族内预存了各类通用的应用服务</li>
+<li>如FTP 文件传输协议 DNS域名系统</li>
+<li>HTTP在这应用层<br>####传输层：对上层应用层， 提供处于网络连接中的两台计算机之间数据传输</li>
+<li>在传输层有两个性质不同的协议 ： <ol>
+<li>TCP 传输控制协议</li>
+<li>UDP 用户数据报协议<br>####网络层（又名网络互连层）</li>
+</ol>
+</li>
+<li>网络层用来处理在网络上流动的数据包。数据包是网路传输的最小数据单位。</li>
+<li>该层规定了通过怎样的的路径（所谓传输线路）到达对方计算机，并把数据包传送给对方。<br>####链路层（又名数据链路层，网络接口层）</li>
+<li>用来处理连接网络的硬件部分。</li>
+<li>包括控制操作系统、硬件的设备驱动、NIC(网卡)，及光纤等物理可见部分</li>
+<li>还包括连接器等一切传输媒介。<br>##示例：<br><img src="http://op6dvs9c7.bkt.clouddn.com/1.png" alt="TCP/IP分层示例"></li>
+</ul>
+<p>###2.IP协议</p>
+<p>####IP属于网络层</p>
+<ul>
+<li>IP协议与IP地址不是一种东西。</li>
+<li>IP协议的作用是把各种数据包传送给对方。而要保证确实传送到对方那里，则需要满足各类条件。其中两种重要的条件是IP地址和MAC地址</li>
+<li>IP地址指明了节点被分配到的地址，MAC地址是指网卡所属的固定地址。IP地址可以和MAC地址进行配对。IP地址可变换,但MAC地址基本不会更改。</li>
+<li>IP间的通信依赖MAC地址。此时会采用ARP协议。ARP是一种用以解析地址的协议，根基通信方的IP地址就可以反查出对应的MAC地址<br>###3.TCP协议</li>
+<li>按层次分，TCP位于传输层，提供可靠地字节流服务。</li>
+<li>这是指为了方便传输，将大块数据分割成以报文段（segment）为单位的数据包进行管理。而可靠地传输协议为了更容易传送大数据才把数据分割，而且TCP协议能够确认数据最终是否送达到对方。<br>###4.经典的TCP/IP里的三次握手</li>
+<li>TCP采取三次握手的方式确保数据的送达。</li>
+<li>握手过程中使用了TCP的标志 - SYN 和 ACK</li>
+<li>发送端首先发送一个带SYN标志的数据包给对方。接收端收到后，回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后，发送端再回传一个带ACK标志的数据包,代表“握手”结束。</li>
+<li>注：若在握手过程中某个阶段莫名中断，TCO协议会再次以相同的顺序发送相同的数据包。<br>##三次握手图示：<br><img src="http://op6dvs9c7.bkt.clouddn.com/2.png" alt="三次握手"></li>
+</ul>
+<p>###5.DNS</p>
+<ul>
+<li>DNS服务是和HTTP协议一样位于应用层的协议。</li>
+<li>它提供域名和IP地址之间的解析服务。</li>
+<li>计算机既可以被赋予IP地址，也可以被赋予主机名和域名。</li>
+<li>以用户的角度一般都是通过域名访问对方的计算机（通过浏览器访问网站），而不是通过输入IP地址来访问。域名方式更符合人类的记忆习惯。</li>
+<li>同样的让计算机理解域名相对而言就变得困难了。因为计算机更擅长处理一长串数字。</li>
+<li>为了解决上述的问题，DNS服务应运而生。DNS协议提供通过域名查找IP地址，或逆向从IP地址反查询域名的服务。<br>###6.URI和URL</li>
+<li>URI用字符串标识某一互联网资源，而URL表示资源的地点（指的是互联网上所处的位置）。</li>
+<li>由此可见URL识URI的子集。</li>
+</ul>
+<hr>
+<p>##初识HTTP</p>
+<p>###1.HTTP协议用于客户端和服务端之间的通信</p>
+<ul>
+<li>客户端：请求访问文本或图像等资源的一端</li>
+<li>服务端：提供资源响应的一端</li>
+<li>注：在应用HTTP协议时，必定是一端担任客户端角色，另一端担任服务端角色，在实际情况下，俩端角色可能互换，但是再一条通信线路中，用HTTP协议就能明确两端定位。</li>
+</ul>
+<p>###2.通过请求和响应的交换达成通信</p>
+<ul>
+<li>请求必定由客户端发出，而服务端响应该请求并返回。</li>
+<li>换句话说通信是从客户端开始的建立的，服务端在没有接收到请求之前不会发送响应。<br>###3.HTTP是不保存状态的协议</li>
+<li>即无状态协议。<br>###4.HTTP协议以报文形式交流</li>
+<li>请求报文是由请求方法、请求URL、协议版本、可选的请求首部字段和内容实体构成的。<br><strong>（后面会深入了解）</strong><br>###5.HTTP/1.1 是一种无状态的协议。</li>
+<li>为了实现期望的保持状态的功能，于是引入了Cookie技术。</li>
+<li>有了Cookie技术再用HTTP协议通信，就可以管理状态了<br><strong>（后面会深入了解）</strong><br>###6.当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。<br>##图示：<br><img src="http://op6dvs9c7.bkt.clouddn.com/3.png" alt="完整的URI"></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="blog.fushily.cn/2017/05/11/JavaScript笔记-DOM初步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -560,7 +745,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -573,7 +758,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
