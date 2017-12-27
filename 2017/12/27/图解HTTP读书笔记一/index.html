@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/1.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/2.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/3.png">
-<meta property="og:updated_time" content="2017-12-27T13:27:37.580Z">
+<meta property="og:updated_time" content="2017-12-27T13:31:16.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解HTTP读书笔记一">
 <meta name="twitter:description" content="图解HTTP协议读书笔记一个人阅读《图解HTTP》的记录以及总结 HTTP协议的概念  HTTP通常被译为超文本传输协议,但这种译法并不严谨,严谨的译法应为”超文本转移协议”，HTTP协议也是客户端与服务端的请求和应答一种标准，我们的WEB就是使用HTTP协议作为规范 由于WEB是建立在HTTP协议上通信的，而通常互联网是建立在TCP/IP协议族的基础上运作的，HTTP是TCP/IP的一个子集。所">
@@ -406,21 +406,28 @@
 <li>IP协议与IP地址不是一种东西。</li>
 <li>IP协议的作用是把各种数据包传送给对方。而要保证确实传送到对方那里，则需要满足各类条件。其中两种重要的条件是IP地址和MAC地址</li>
 <li>IP地址指明了节点被分配到的地址，MAC地址是指网卡所属的固定地址。IP地址可以和MAC地址进行配对。IP地址可变换,但MAC地址基本不会更改。</li>
-<li>IP间的通信依赖MAC地址。此时会采用ARP协议。ARP是一种用以解析地址的协议，根基通信方的IP地址就可以反查出对应的MAC地址<h3 id="3-TCP协议"><a href="#3-TCP协议" class="headerlink" title="3.TCP协议"></a>3.TCP协议</h3></li>
+<li>IP间的通信依赖MAC地址。此时会采用ARP协议。ARP是一种用以解析地址的协议，根基通信方的IP地址就可以反查出对应的MAC地址</li>
+</ul>
+<h3 id="3-TCP协议"><a href="#3-TCP协议" class="headerlink" title="3.TCP协议"></a>3.TCP协议</h3><ul>
 <li>按层次分，TCP位于传输层，提供可靠地字节流服务。</li>
-<li>这是指为了方便传输，将大块数据分割成以报文段（segment）为单位的数据包进行管理。而可靠地传输协议为了更容易传送大数据才把数据分割，而且TCP协议能够确认数据最终是否送达到对方。<h3 id="4-经典的TCP-IP里的三次握手"><a href="#4-经典的TCP-IP里的三次握手" class="headerlink" title="4.经典的TCP/IP里的三次握手"></a>4.经典的TCP/IP里的三次握手</h3></li>
+<li>这是指为了方便传输，将大块数据分割成以报文段（segment）为单位的数据包进行管理。而可靠地传输协议为了更容易传送大数据才把数据分割，而且TCP协议能够确认数据最终是否送达到对方。</li>
+</ul>
+<h3 id="4-经典的TCP-IP里的三次握手"><a href="#4-经典的TCP-IP里的三次握手" class="headerlink" title="4.经典的TCP/IP里的三次握手"></a>4.经典的TCP/IP里的三次握手</h3><ul>
 <li>TCP采取三次握手的方式确保数据的送达。</li>
 <li>握手过程中使用了TCP的标志 - SYN 和 ACK</li>
 <li>发送端首先发送一个带SYN标志的数据包给对方。接收端收到后，回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后，发送端再回传一个带ACK标志的数据包,代表“握手”结束。</li>
-<li>注：若在握手过程中某个阶段莫名中断，TCO协议会再次以相同的顺序发送相同的数据包。<br>三次握手图示：<br><img src="http://op6dvs9c7.bkt.clouddn.com/2.png" alt="三次握手"></li>
+<li>注：若在握手过程中某个阶段莫名中断，TCO协议会再次以相同的顺序发送相同的数据包。</li>
 </ul>
+<p>三次握手图示：<br><img src="http://op6dvs9c7.bkt.clouddn.com/2.png" alt="三次握手"></p>
 <h3 id="5-DNS"><a href="#5-DNS" class="headerlink" title="5.DNS"></a>5.DNS</h3><ul>
 <li>DNS服务是和HTTP协议一样位于应用层的协议。</li>
 <li>它提供域名和IP地址之间的解析服务。</li>
 <li>计算机既可以被赋予IP地址，也可以被赋予主机名和域名。</li>
 <li>以用户的角度一般都是通过域名访问对方的计算机（通过浏览器访问网站），而不是通过输入IP地址来访问。域名方式更符合人类的记忆习惯。</li>
 <li>同样的让计算机理解域名相对而言就变得困难了。因为计算机更擅长处理一长串数字。</li>
-<li>为了解决上述的问题，DNS服务应运而生。DNS协议提供通过域名查找IP地址，或逆向从IP地址反查询域名的服务。<h3 id="6-URI和URL"><a href="#6-URI和URL" class="headerlink" title="6.URI和URL"></a>6.URI和URL</h3></li>
+<li>为了解决上述的问题，DNS服务应运而生。DNS协议提供通过域名查找IP地址，或逆向从IP地址反查询域名的服务。</li>
+</ul>
+<h3 id="6-URI和URL"><a href="#6-URI和URL" class="headerlink" title="6.URI和URL"></a>6.URI和URL</h3><ul>
 <li>URI用字符串标识某一互联网资源，而URL表示资源的地点（指的是互联网上所处的位置）。</li>
 <li>由此可见URL识URI的子集。</li>
 </ul>
@@ -432,12 +439,19 @@
 </ul>
 <h3 id="2-通过请求和响应的交换达成通信"><a href="#2-通过请求和响应的交换达成通信" class="headerlink" title="2.通过请求和响应的交换达成通信"></a>2.通过请求和响应的交换达成通信</h3><ul>
 <li>请求必定由客户端发出，而服务端响应该请求并返回。</li>
-<li>换句话说通信是从客户端开始的建立的，服务端在没有接收到请求之前不会发送响应。<h3 id="3-HTTP是不保存状态的协议"><a href="#3-HTTP是不保存状态的协议" class="headerlink" title="3.HTTP是不保存状态的协议"></a>3.HTTP是不保存状态的协议</h3></li>
-<li>即无状态协议。<h3 id="4-HTTP协议以报文形式交流"><a href="#4-HTTP协议以报文形式交流" class="headerlink" title="4.HTTP协议以报文形式交流"></a>4.HTTP协议以报文形式交流</h3></li>
-<li>请求报文是由请求方法、请求URL、协议版本、可选的请求首部字段和内容实体构成的。<br><strong>（后面会深入了解）</strong><h3 id="5-HTTP-1-1-是一种无状态的协议。"><a href="#5-HTTP-1-1-是一种无状态的协议。" class="headerlink" title="5.HTTP/1.1 是一种无状态的协议。"></a>5.HTTP/1.1 是一种无状态的协议。</h3></li>
-<li>为了实现期望的保持状态的功能，于是引入了Cookie技术。</li>
-<li>有了Cookie技术再用HTTP协议通信，就可以管理状态了<br><strong>（后面会深入了解）</strong><h3 id="6-当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。"><a href="#6-当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。" class="headerlink" title="6.当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。"></a>6.当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。</h3>图示：<br><img src="http://op6dvs9c7.bkt.clouddn.com/3.png" alt="完整的URI"></li>
+<li>换句话说通信是从客户端开始的建立的，服务端在没有接收到请求之前不会发送响应。</li>
 </ul>
+<h3 id="3-HTTP是不保存状态的协议"><a href="#3-HTTP是不保存状态的协议" class="headerlink" title="3.HTTP是不保存状态的协议"></a>3.HTTP是不保存状态的协议</h3><ul>
+<li>即无状态协议。</li>
+</ul>
+<h3 id="4-HTTP协议以报文形式交流"><a href="#4-HTTP协议以报文形式交流" class="headerlink" title="4.HTTP协议以报文形式交流"></a>4.HTTP协议以报文形式交流</h3><ul>
+<li>请求报文是由请求方法、请求URL、协议版本、可选的请求首部字段和内容实体构成的。<br><strong>（后面会深入了解）</strong></li>
+</ul>
+<h3 id="5-HTTP-1-1-是一种无状态的协议。"><a href="#5-HTTP-1-1-是一种无状态的协议。" class="headerlink" title="5.HTTP/1.1 是一种无状态的协议。"></a>5.HTTP/1.1 是一种无状态的协议。</h3><ul>
+<li>为了实现期望的保持状态的功能，于是引入了Cookie技术。</li>
+<li>有了Cookie技术再用HTTP协议通信，就可以管理状态了<br><strong>（后面会深入了解）</strong></li>
+</ul>
+<h3 id="6-当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。"><a href="#6-当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。" class="headerlink" title="6.当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。"></a>6.当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。</h3><p>图示：<br><img src="http://op6dvs9c7.bkt.clouddn.com/3.png" alt="完整的URI"></p>
 
       
     </div>
