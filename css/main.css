@@ -1827,7 +1827,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e9867e;
+  background: #c9ff25;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2725,4 +2725,13 @@ embed {
 .links-of-author a:before {
   color: #6eff00;
   background: #6eff00;
+}
+.headband {
+  width: 100%;
+  height: 3px;
+  background: #222;
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+  box-shadow: 0px 0px 10px #5a5a5a;
 }
