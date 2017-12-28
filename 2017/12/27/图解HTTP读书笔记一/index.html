@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/1.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/2.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/3.png">
-<meta property="og:updated_time" content="2017-12-27T13:31:16.794Z">
+<meta property="og:updated_time" content="2017-12-28T02:56:58.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解HTTP读书笔记一">
 <meta name="twitter:description" content="图解HTTP协议读书笔记一个人阅读《图解HTTP》的记录以及总结 HTTP协议的概念  HTTP通常被译为超文本传输协议,但这种译法并不严谨,严谨的译法应为”超文本转移协议”，HTTP协议也是客户端与服务端的请求和应答一种标准，我们的WEB就是使用HTTP协议作为规范 由于WEB是建立在HTTP协议上通信的，而通常互联网是建立在TCP/IP协议族的基础上运作的，HTTP是TCP/IP的一个子集。所">
@@ -387,21 +387,30 @@
 <hr>
 <a id="more"></a>
 <h2 id="对TCP-IP理解"><a href="#对TCP-IP理解" class="headerlink" title="对TCP/IP理解"></a>对TCP/IP理解</h2><h3 id="1-TCP-IP协议族里重要的一点就是分层"><a href="#1-TCP-IP协议族里重要的一点就是分层" class="headerlink" title="1.TCP/IP协议族里重要的一点就是分层"></a>1.TCP/IP协议族里重要的一点就是分层</h3><ul>
-<li>TCP/IP分为应用层、传输层、网络层、和数据链路层<h4 id="应用层：决定了向用户提供应用服务时通信的活动。"><a href="#应用层：决定了向用户提供应用服务时通信的活动。" class="headerlink" title="应用层：决定了向用户提供应用服务时通信的活动。"></a>应用层：决定了向用户提供应用服务时通信的活动。</h4></li>
+<li>TCP/IP分为应用层、传输层、网络层、和数据链路层</li>
+</ul>
+<h4 id="应用层：决定了向用户提供应用服务时通信的活动。"><a href="#应用层：决定了向用户提供应用服务时通信的活动。" class="headerlink" title="应用层：决定了向用户提供应用服务时通信的活动。"></a>应用层：决定了向用户提供应用服务时通信的活动。</h4><ul>
 <li>TCP/IP协议族内预存了各类通用的应用服务</li>
 <li>如FTP 文件传输协议 DNS域名系统</li>
-<li>HTTP在这应用层<h4 id="传输层：对上层应用层，-提供处于网络连接中的两台计算机之间数据传输"><a href="#传输层：对上层应用层，-提供处于网络连接中的两台计算机之间数据传输" class="headerlink" title="传输层：对上层应用层， 提供处于网络连接中的两台计算机之间数据传输"></a>传输层：对上层应用层， 提供处于网络连接中的两台计算机之间数据传输</h4></li>
+<li>HTTP在这应用层</li>
+</ul>
+<h4 id="传输层：对上层应用层，-提供处于网络连接中的两台计算机之间数据传输"><a href="#传输层：对上层应用层，-提供处于网络连接中的两台计算机之间数据传输" class="headerlink" title="传输层：对上层应用层， 提供处于网络连接中的两台计算机之间数据传输"></a>传输层：对上层应用层， 提供处于网络连接中的两台计算机之间数据传输</h4><ul>
 <li>在传输层有两个性质不同的协议 ： <ol>
 <li>TCP 传输控制协议</li>
-<li>UDP 用户数据报协议<h4 id="网络层（又名网络互连层）"><a href="#网络层（又名网络互连层）" class="headerlink" title="网络层（又名网络互连层）"></a>网络层（又名网络互连层）</h4></li>
+<li>UDP 用户数据报协议</li>
 </ol>
 </li>
+</ul>
+<h4 id="网络层（又名网络互连层）"><a href="#网络层（又名网络互连层）" class="headerlink" title="网络层（又名网络互连层）"></a>网络层（又名网络互连层）</h4><ul>
 <li>网络层用来处理在网络上流动的数据包。数据包是网路传输的最小数据单位。</li>
-<li>该层规定了通过怎样的的路径（所谓传输线路）到达对方计算机，并把数据包传送给对方。<h4 id="链路层（又名数据链路层，网络接口层）"><a href="#链路层（又名数据链路层，网络接口层）" class="headerlink" title="链路层（又名数据链路层，网络接口层）"></a>链路层（又名数据链路层，网络接口层）</h4></li>
+<li>该层规定了通过怎样的的路径（所谓传输线路）到达对方计算机，并把数据包传送给对方。</li>
+</ul>
+<h4 id="链路层（又名数据链路层，网络接口层）"><a href="#链路层（又名数据链路层，网络接口层）" class="headerlink" title="链路层（又名数据链路层，网络接口层）"></a>链路层（又名数据链路层，网络接口层）</h4><ul>
 <li>用来处理连接网络的硬件部分。</li>
 <li>包括控制操作系统、硬件的设备驱动、NIC(网卡)，及光纤等物理可见部分</li>
-<li>还包括连接器等一切传输媒介。<br>示例：<br><img src="http://op6dvs9c7.bkt.clouddn.com/1.png" alt="TCP/IP分层示例"></li>
+<li>还包括连接器等一切传输媒介。</li>
 </ul>
+<p>示例：<br><img src="http://op6dvs9c7.bkt.clouddn.com/1.png" alt="TCP/IP分层示例"></p>
 <h3 id="2-IP协议"><a href="#2-IP协议" class="headerlink" title="2.IP协议"></a>2.IP协议</h3><h4 id="IP属于网络层"><a href="#IP属于网络层" class="headerlink" title="IP属于网络层"></a>IP属于网络层</h4><ul>
 <li>IP协议与IP地址不是一种东西。</li>
 <li>IP协议的作用是把各种数据包传送给对方。而要保证确实传送到对方那里，则需要满足各类条件。其中两种重要的条件是IP地址和MAC地址</li>
