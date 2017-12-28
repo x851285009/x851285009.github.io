@@ -1827,7 +1827,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #081dfa;
+  background: #ffffe0;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2697,11 +2697,6 @@ embed {
 }
 .site-author-image {
   display: block;
-  margin: 15px auto;
-/*padding: $site-author-image-padding;*/
-/*
-  border: $site-author-image-border-width solid $site-author-image-border-color;
-  */
   border-radius: 50%;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
