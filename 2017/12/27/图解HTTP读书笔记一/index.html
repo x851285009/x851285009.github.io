@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/1.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/2.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/3.png">
-<meta property="og:updated_time" content="2017-12-28T02:56:58.259Z">
+<meta property="og:updated_time" content="2017-12-28T03:06:29.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解HTTP读书笔记一">
 <meta name="twitter:description" content="图解HTTP协议读书笔记一个人阅读《图解HTTP》的记录以及总结 HTTP协议的概念  HTTP通常被译为超文本传输协议,但这种译法并不严谨,严谨的译法应为”超文本转移协议”，HTTP协议也是客户端与服务端的请求和应答一种标准，我们的WEB就是使用HTTP协议作为规范 由于WEB是建立在HTTP协议上通信的，而通常互联网是建立在TCP/IP协议族的基础上运作的，HTTP是TCP/IP的一个子集。所">
@@ -387,17 +387,17 @@
 <hr>
 <a id="more"></a>
 <h2 id="对TCP-IP理解"><a href="#对TCP-IP理解" class="headerlink" title="对TCP/IP理解"></a>对TCP/IP理解</h2><h3 id="1-TCP-IP协议族里重要的一点就是分层"><a href="#1-TCP-IP协议族里重要的一点就是分层" class="headerlink" title="1.TCP/IP协议族里重要的一点就是分层"></a>1.TCP/IP协议族里重要的一点就是分层</h3><ul>
-<li>TCP/IP分为应用层、传输层、网络层、和数据链路层</li>
+<li>TCP/IP分为应用层、传输层、网络层、和数据链路层。</li>
 </ul>
 <h4 id="应用层：决定了向用户提供应用服务时通信的活动。"><a href="#应用层：决定了向用户提供应用服务时通信的活动。" class="headerlink" title="应用层：决定了向用户提供应用服务时通信的活动。"></a>应用层：决定了向用户提供应用服务时通信的活动。</h4><ul>
-<li>TCP/IP协议族内预存了各类通用的应用服务</li>
-<li>如FTP 文件传输协议 DNS域名系统</li>
-<li>HTTP在这应用层</li>
+<li>TCP/IP协议族内预存了各类通用的应用服务。</li>
+<li>如FTP 文件传输协议 DNS域名系统。</li>
+<li>HTTP在这应用层。</li>
 </ul>
 <h4 id="传输层：对上层应用层，-提供处于网络连接中的两台计算机之间数据传输"><a href="#传输层：对上层应用层，-提供处于网络连接中的两台计算机之间数据传输" class="headerlink" title="传输层：对上层应用层， 提供处于网络连接中的两台计算机之间数据传输"></a>传输层：对上层应用层， 提供处于网络连接中的两台计算机之间数据传输</h4><ul>
 <li>在传输层有两个性质不同的协议 ： <ol>
-<li>TCP 传输控制协议</li>
-<li>UDP 用户数据报协议</li>
+<li>TCP 传输控制协议。</li>
+<li>UDP 用户数据报协议。</li>
 </ol>
 </li>
 </ul>
@@ -407,15 +407,15 @@
 </ul>
 <h4 id="链路层（又名数据链路层，网络接口层）"><a href="#链路层（又名数据链路层，网络接口层）" class="headerlink" title="链路层（又名数据链路层，网络接口层）"></a>链路层（又名数据链路层，网络接口层）</h4><ul>
 <li>用来处理连接网络的硬件部分。</li>
-<li>包括控制操作系统、硬件的设备驱动、NIC(网卡)，及光纤等物理可见部分</li>
+<li>包括控制操作系统、硬件的设备驱动、NIC(网卡)，及光纤等物理可见部分。</li>
 <li>还包括连接器等一切传输媒介。</li>
 </ul>
 <p>示例：<br><img src="http://op6dvs9c7.bkt.clouddn.com/1.png" alt="TCP/IP分层示例"></p>
 <h3 id="2-IP协议"><a href="#2-IP协议" class="headerlink" title="2.IP协议"></a>2.IP协议</h3><h4 id="IP属于网络层"><a href="#IP属于网络层" class="headerlink" title="IP属于网络层"></a>IP属于网络层</h4><ul>
 <li>IP协议与IP地址不是一种东西。</li>
-<li>IP协议的作用是把各种数据包传送给对方。而要保证确实传送到对方那里，则需要满足各类条件。其中两种重要的条件是IP地址和MAC地址</li>
+<li>IP协议的作用是把各种数据包传送给对方。而要保证确实传送到对方那里，则需要满足各类条件。其中两种重要的条件是IP地址和MAC地址。</li>
 <li>IP地址指明了节点被分配到的地址，MAC地址是指网卡所属的固定地址。IP地址可以和MAC地址进行配对。IP地址可变换,但MAC地址基本不会更改。</li>
-<li>IP间的通信依赖MAC地址。此时会采用ARP协议。ARP是一种用以解析地址的协议，根基通信方的IP地址就可以反查出对应的MAC地址</li>
+<li>IP间的通信依赖MAC地址。此时会采用ARP协议。ARP是一种用以解析地址的协议，根基通信方的IP地址就可以反查出对应的MAC地址。</li>
 </ul>
 <h3 id="3-TCP协议"><a href="#3-TCP协议" class="headerlink" title="3.TCP协议"></a>3.TCP协议</h3><ul>
 <li>按层次分，TCP位于传输层，提供可靠地字节流服务。</li>
@@ -442,8 +442,8 @@
 </ul>
 <hr>
 <h2 id="初识HTTP"><a href="#初识HTTP" class="headerlink" title="初识HTTP"></a>初识HTTP</h2><h3 id="1-HTTP协议用于客户端和服务端之间的通信"><a href="#1-HTTP协议用于客户端和服务端之间的通信" class="headerlink" title="1.HTTP协议用于客户端和服务端之间的通信"></a>1.HTTP协议用于客户端和服务端之间的通信</h3><ul>
-<li>客户端：请求访问文本或图像等资源的一端</li>
-<li>服务端：提供资源响应的一端</li>
+<li>客户端：请求访问文本或图像等资源的一端。</li>
+<li>服务端：提供资源响应的一端。</li>
 <li>注：在应用HTTP协议时，必定是一端担任客户端角色，另一端担任服务端角色，在实际情况下，俩端角色可能互换，但是再一条通信线路中，用HTTP协议就能明确两端定位。</li>
 </ul>
 <h3 id="2-通过请求和响应的交换达成通信"><a href="#2-通过请求和响应的交换达成通信" class="headerlink" title="2.通过请求和响应的交换达成通信"></a>2.通过请求和响应的交换达成通信</h3><ul>
@@ -458,7 +458,7 @@
 </ul>
 <h3 id="5-HTTP-1-1-是一种无状态的协议。"><a href="#5-HTTP-1-1-是一种无状态的协议。" class="headerlink" title="5.HTTP/1.1 是一种无状态的协议。"></a>5.HTTP/1.1 是一种无状态的协议。</h3><ul>
 <li>为了实现期望的保持状态的功能，于是引入了Cookie技术。</li>
-<li>有了Cookie技术再用HTTP协议通信，就可以管理状态了<br><strong>（后面会深入了解）</strong></li>
+<li>有了Cookie技术再用HTTP协议通信，就可以管理状态了。<br><strong>（后面会深入了解）</strong></li>
 </ul>
 <h3 id="6-当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。"><a href="#6-当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。" class="headerlink" title="6.当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。"></a>6.当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。</h3><p>图示：<br><img src="http://op6dvs9c7.bkt.clouddn.com/3.png" alt="完整的URI"></p>
 
