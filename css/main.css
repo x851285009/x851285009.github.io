@@ -1827,7 +1827,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b3ffa3;
+  background: #e9867e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2723,12 +2723,6 @@ embed {
   transform: rotate(360deg) scale(1.1);
 }
 .links-of-author a:before {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 3px;
-  content: " ";
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
+  color: #6eff00;
   background: #6eff00;
 }
