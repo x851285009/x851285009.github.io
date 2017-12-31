@@ -86,21 +86,21 @@
 
 
 
-<meta name="description" content="图解HTTP读书笔记三##HTTP报文  用于HTTP协议交互的信息被称为HTTP报文。客户端的HTTP报文叫做请求报文，服务器端的叫做响应报文。 HTTP报文本身就是由多行(用CR+LF作为换行符)数据构成的字符串文本。注：“回车”（CR）   “换行”（LF）  1.HTTP报文的内容 HTTP报文大致可分为报文首部和报文主体两块。两者由最初出现的空行（CR+LF）来划分。通常，并不一定要有报">
+<meta name="description" content="图解HTTP读书笔记三##HTTP报文  用于HTTP协议交互的信息被称为HTTP报文。客户端的HTTP报文叫做请求报文，服务器端的叫做响应报文。 HTTP报文本身就是由多行(用CR+LF作为换行符)数据构成的字符串文本。注：“回车”（CR）   “换行”（LF）   1.HTTP报文的内容 HTTP报文大致可分为报文首部和报文主体两块。两者由最初出现的空行（CR+LF）来划分。通常，并不一定要有">
 <meta name="keywords" content="HTTP协议,读书笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图解HTTP读书笔记三">
 <meta property="og:url" content="blog.fushily.cn/2017/12/31/图解HTTP读书笔记三/index.html">
 <meta property="og:site_name" content="江湖夜雨十年灯">
-<meta property="og:description" content="图解HTTP读书笔记三##HTTP报文  用于HTTP协议交互的信息被称为HTTP报文。客户端的HTTP报文叫做请求报文，服务器端的叫做响应报文。 HTTP报文本身就是由多行(用CR+LF作为换行符)数据构成的字符串文本。注：“回车”（CR）   “换行”（LF）  1.HTTP报文的内容 HTTP报文大致可分为报文首部和报文主体两块。两者由最初出现的空行（CR+LF）来划分。通常，并不一定要有报">
+<meta property="og:description" content="图解HTTP读书笔记三##HTTP报文  用于HTTP协议交互的信息被称为HTTP报文。客户端的HTTP报文叫做请求报文，服务器端的叫做响应报文。 HTTP报文本身就是由多行(用CR+LF作为换行符)数据构成的字符串文本。注：“回车”（CR）   “换行”（LF）   1.HTTP报文的内容 HTTP报文大致可分为报文首部和报文主体两块。两者由最初出现的空行（CR+LF）来划分。通常，并不一定要有">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/7.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/6.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/8.png">
 <meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/9.png">
-<meta property="og:updated_time" content="2017-12-31T12:25:13.263Z">
+<meta property="og:updated_time" content="2017-12-31T12:31:05.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解HTTP读书笔记三">
-<meta name="twitter:description" content="图解HTTP读书笔记三##HTTP报文  用于HTTP协议交互的信息被称为HTTP报文。客户端的HTTP报文叫做请求报文，服务器端的叫做响应报文。 HTTP报文本身就是由多行(用CR+LF作为换行符)数据构成的字符串文本。注：“回车”（CR）   “换行”（LF）  1.HTTP报文的内容 HTTP报文大致可分为报文首部和报文主体两块。两者由最初出现的空行（CR+LF）来划分。通常，并不一定要有报">
+<meta name="twitter:description" content="图解HTTP读书笔记三##HTTP报文  用于HTTP协议交互的信息被称为HTTP报文。客户端的HTTP报文叫做请求报文，服务器端的叫做响应报文。 HTTP报文本身就是由多行(用CR+LF作为换行符)数据构成的字符串文本。注：“回车”（CR）   “换行”（LF）   1.HTTP报文的内容 HTTP报文大致可分为报文首部和报文主体两块。两者由最初出现的空行（CR+LF）来划分。通常，并不一定要有">
 <meta name="twitter:image" content="http://op6dvs9c7.bkt.clouddn.com/7.png">
 
 
@@ -385,6 +385,7 @@
 <blockquote>
 <p>用于HTTP协议交互的信息被称为HTTP报文。客户端的HTTP报文叫做请求报文，服务器端的叫做响应报文。 HTTP报文本身就是由多行(用CR+LF作为换行符)数据构成的字符串文本。<br>注：“回车”（CR）   “换行”（LF）</p>
 </blockquote>
+<!--move-->
 <h3 id="1-HTTP报文的内容"><a href="#1-HTTP报文的内容" class="headerlink" title="1.HTTP报文的内容"></a>1.HTTP报文的内容</h3><ul>
 <li>HTTP报文大致可分为报文首部和报文主体两块。两者由最初出现的空行（CR+LF）来划分。通常，并不一定要有报文主体。</li>
 <li>报文首部：服务器端或客户端需处理的请求或响应的内容及属性</li>
@@ -417,6 +418,7 @@
 <blockquote>
 <p>注：常用的内容编码有以下几种:<br>1.gzip(GNU ZIP)<br>2.compress(UNIX 系统的标准压缩)<br>3.deflate (zlib)<br>4.identitlt (不进行编码)</p>
 </blockquote>
+<hr>
 <p>##分割发送的分块传输编码</p>
 <ul>
 <li>在HTTP通信过程中，请求的编码实体资源尚未全部传输完成之前，浏览器无法显示请求页面。</li>
@@ -426,6 +428,7 @@
 <blockquote>
 <p>分块传输编码会将实体主体分成多个部分（块）。每一块都会用十六进制来标记块的大小，而实体主体的最后一块会使用“0（CR+LF）”来标记。<br>使用分块传输编码的实体主体会由接受的客户端负责解码，恢复到编码前的实体主体。<br>HTTP/1.1中存在一种称为传输编码的机制，它可以在通信时按某种编码方式传输，但只定义作用于分块传输编码中。</p>
 </blockquote>
+<hr>
 <p>##发送多种数据的多部分对象集合<br><strong>HTTP协议采用了类MIME里的多部分对象集合，发送的一份报文主体内可含有多类型实体。通常是在图片或文本文件等上传时使用。</strong></p>
 <blockquote>
 <p>MIME指的是多用途因特网邮件扩展机制，该机制允许邮件处理不同类型的数据，<br>MIME扩展中会使用一种称为多部分对象集合的方法，来容纳多份不同类型的数据</p>
@@ -439,6 +442,7 @@
 <li>多部分对象集合的每个部分类型中，都可以含有首部字段。</li>
 <li>另外，可以在某个部分中嵌套使用对部分对象集合。</li>
 </ul>
+<hr>
 <p>##获取部分内容的范围请求</p>
 <blockquote>
 <p>以前,用户不能使用现在这种高速的宽带访问互联网，当时，下载一个尺度稍大的图片或文件就已经很吃力了。如果下载过程中遇到网络中断的情况，那就必须重头开始。为了解决上述问题，需要一种可恢复的机制。所谓恢复是指从之前下载中断处恢复下载。</p>
@@ -459,6 +463,7 @@
 <li>另外，对于多重范围的范围请求，响应会在首部字段Content-Type标明multipart/byteranges后返回响应报文。</li>
 <li>如果服务器端无法响应范围请求，则会返回状态码200OK和完整的实体内容。</li>
 </ul>
+<hr>
 <p>##内容协商返回最合适的内容</p>
 <blockquote>
 <p>同一个WEB网站有可能存在着多份相同内容的页面。比如英语版和中文版的WEN页面，它们内容上虽然相同，但使用的语言却不同。<br>当浏览器的默认语言为英语或中文，访问相同URI的WEB页面时，则会显示对应的英语版或中文版的WEB页面。这样的机制称为内容协商。</p>
