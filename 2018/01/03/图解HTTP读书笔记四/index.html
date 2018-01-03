@@ -86,20 +86,19 @@
 
 
 
-<meta name="description" content="图解HTTP协议读书笔记二个人阅读《图解HTTP》的记录以及总结 以下内容会更深入的了解和学习HTTP协议的相关内容 从告知浏览器意图的HTTP方法继续我的旅程 简答的来说就是客户端如何发送以及以怎样的方式发送HTTP请求最常用的就是POST和GET，其他的方式都存在安全性问题所以下文着重描述POST和GET方法">
+<meta name="description" content="图解HTTP协议读书笔记四HTTP状态码 HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。  以下内容将以HTTP状态码为主要内容">
 <meta name="keywords" content="HTTP协议,读书笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图解HTTP读书笔记二">
-<meta property="og:url" content="blog.fushily.cn/2017/12/29/图解HTTP读书笔记二/index.html">
+<meta property="og:title" content="图解HTTP读书笔记四">
+<meta property="og:url" content="blog.fushily.cn/2018/01/03/图解HTTP读书笔记四/index.html">
 <meta property="og:site_name" content="江湖夜雨十年灯">
-<meta property="og:description" content="图解HTTP协议读书笔记二个人阅读《图解HTTP》的记录以及总结 以下内容会更深入的了解和学习HTTP协议的相关内容 从告知浏览器意图的HTTP方法继续我的旅程 简答的来说就是客户端如何发送以及以怎样的方式发送HTTP请求最常用的就是POST和GET，其他的方式都存在安全性问题所以下文着重描述POST和GET方法">
-<meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/4.png">
-<meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/5.png">
-<meta property="og:updated_time" content="2017-12-29T11:22:03.859Z">
+<meta property="og:description" content="图解HTTP协议读书笔记四HTTP状态码 HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。  以下内容将以HTTP状态码为主要内容">
+<meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/10.png">
+<meta property="og:updated_time" content="2018-01-03T11:45:39.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图解HTTP读书笔记二">
-<meta name="twitter:description" content="图解HTTP协议读书笔记二个人阅读《图解HTTP》的记录以及总结 以下内容会更深入的了解和学习HTTP协议的相关内容 从告知浏览器意图的HTTP方法继续我的旅程 简答的来说就是客户端如何发送以及以怎样的方式发送HTTP请求最常用的就是POST和GET，其他的方式都存在安全性问题所以下文着重描述POST和GET方法">
-<meta name="twitter:image" content="http://op6dvs9c7.bkt.clouddn.com/4.png">
+<meta name="twitter:title" content="图解HTTP读书笔记四">
+<meta name="twitter:description" content="图解HTTP协议读书笔记四HTTP状态码 HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。  以下内容将以HTTP状态码为主要内容">
+<meta name="twitter:image" content="http://op6dvs9c7.bkt.clouddn.com/10.png">
 
 
 
@@ -129,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="blog.fushily.cn/2017/12/29/图解HTTP读书笔记二/"/>
+  <link rel="canonical" href="blog.fushily.cn/2018/01/03/图解HTTP读书笔记四/"/>
 
 
 
 
 
-  <title>图解HTTP读书笔记二 | 江湖夜雨十年灯</title>
+  <title>图解HTTP读书笔记四 | 江湖夜雨十年灯</title>
   
 
 
@@ -285,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="blog.fushily.cn/2017/12/29/图解HTTP读书笔记二/">
+    <link itemprop="mainEntityOfPage" href="blog.fushily.cn/2018/01/03/图解HTTP读书笔记四/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="墨月">
@@ -302,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图解HTTP读书笔记二</h1>
+          <h1 class="post-title" itemprop="name headline">图解HTTP读书笔记四</h1>
         
 
         <div class="post-meta">
@@ -314,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T18:39:23+08:00">
-                2017-12-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T18:57:47+08:00">
+                2018-01-03
               </time>
             
 
@@ -379,50 +378,128 @@
       
 
       
-        <h1 id="图解HTTP协议读书笔记二"><a href="#图解HTTP协议读书笔记二" class="headerlink" title="图解HTTP协议读书笔记二"></a>图解HTTP协议读书笔记二</h1><p>个人阅读《图解HTTP》的记录以及总结</p>
-<p>以下内容会更深入的了解和学习HTTP协议的相关内容</p>
-<h2 id="从告知浏览器意图的HTTP方法继续我的旅程"><a href="#从告知浏览器意图的HTTP方法继续我的旅程" class="headerlink" title="从告知浏览器意图的HTTP方法继续我的旅程"></a>从告知浏览器意图的HTTP方法继续我的旅程</h2><blockquote>
-<p>简答的来说就是客户端如何发送以及以怎样的方式发送HTTP请求<br>最常用的就是POST和GET，其他的方式都存在安全性问题<br>所以下文着重描述POST和GET方法</p>
+        <h1 id="图解HTTP协议读书笔记四"><a href="#图解HTTP协议读书笔记四" class="headerlink" title="图解HTTP协议读书笔记四"></a>图解HTTP协议读书笔记四</h1><h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><blockquote>
+<p>HTTP状态码负责表示客户端HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。</p>
+</blockquote>
+<h2 id="以下内容将以HTTP状态码为主要内容"><a href="#以下内容将以HTTP状态码为主要内容" class="headerlink" title="以下内容将以HTTP状态码为主要内容"></a>以下内容将以HTTP状态码为主要内容</h2><a id="more"></a>
+<p>##状态码告知从服务器端返回的请求结果</p>
+<ul>
+<li>状态码的职责是当客户端向服务端发送请求时，描述返回的请求结果。</li>
+<li>借助状态码，用户可以知道服务器端是正常处理了请求，还是出现了错误。</li>
+</ul>
+<p><strong>状态码的类别：</strong><br><img src="http://op6dvs9c7.bkt.clouddn.com/10.png" alt="状态码的类别"></p>
+<ul>
+<li>只要遵守状态码类别的定义，即使改变RFC2616中定义的状态码，或服务器端自行创建状态码都没问题。</li>
+<li>状态码仅记录在RFC2616上的HTTP状态码就达40种，若再加上WEBDAV（基于万维网的分布式创作和版本控制）（RFC4918、5842）和附加HTTP状态码（RFC6585）等扩展，数量就达60余种。</li>
+<li>别看种类繁多，实际上经常使用的大概只有14种。</li>
+</ul>
+<p><strong>接下来，来了解这些具有代表性的14个状态码。</strong></p>
+<h2 id="一-2XX成功"><a href="#一-2XX成功" class="headerlink" title="一.2XX成功"></a>一.2XX成功</h2><blockquote>
+<p>2XX的响应结果表明请求被正常处理了。</p>
+</blockquote>
+<h3 id="1-1-200-OK"><a href="#1-1-200-OK" class="headerlink" title="1.1 200 OK"></a>1.1 200 OK</h3><blockquote>
+<p>表示从客户端发来的请求在服务器端被正常处理了。</p>
+</blockquote>
+<ul>
+<li>在响应报文内、随状态码一起返回的信息会因方法的不同而发生改变。</li>
+<li>比如，使用GET方法时，对应请求资源的实体会作为响应返回。</li>
+</ul>
+<h3 id="1-2-204-No-Content"><a href="#1-2-204-No-Content" class="headerlink" title="1.2 204 No Content"></a>1.2 204 No Content</h3><blockquote>
+<p>该状态码代表服务器接收的请求已成功处理，但在返回的响应报文中不含实体的主体部分。<br>另外，也不允许返回任何实体的主体。</p>
+</blockquote>
+<ul>
+<li>比如，当从浏览器发出请求处理后，返回204响应，那么浏览器显示的页面不发生更新。</li>
+<li>一般在只需要从客户端往服务器发送信息，而对客户端不需要发送新信息内容的情况下使用。</li>
+</ul>
+<h3 id="1-3-206-Partial-Content"><a href="#1-3-206-Partial-Content" class="headerlink" title="1.3 206 Partial Content"></a>1.3 206 Partial Content</h3><blockquote>
+<p>该状态码表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求。<br>相应报文包含由Content - Range 指定范围的实体内容。</p>
 </blockquote>
 <hr>
-<a id="more"></a>
-<h2 id="告知浏览器意图的HTTP方法"><a href="#告知浏览器意图的HTTP方法" class="headerlink" title="告知浏览器意图的HTTP方法"></a>告知浏览器意图的HTTP方法</h2><h3 id="1-GET方法"><a href="#1-GET方法" class="headerlink" title="1.GET方法"></a>1.GET方法</h3><ul>
-<li>GET请求：获取资源。</li>
-<li>GET方法用来请求访问已被URI识别的资源。指定的资源经服务器端解析后返回响应内容。也就是说，如果请求的资源是文本，那就保持原样返回如果是像CGI（通用网关接口）那样的程序，则返回经过后的输出结果。</li>
-</ul>
-<h3 id="2-POST方法"><a href="#2-POST方法" class="headerlink" title="2.POST方法"></a>2.POST方法</h3><ul>
-<li>POST请求：传输实体主体。</li>
-<li>POST方法用来传输实体的主体。<br>虽然用GET方法也可以传输实体的主体，但一般不用GET方法进行传输，而是用POST方法。虽说POST的功能与GET很相似，但是POST的主要目的并不是获取响应的主题内容。</li>
-</ul>
-<h3 id="3-GET方法和POST方法的区别"><a href="#3-GET方法和POST方法的区别" class="headerlink" title="3.GET方法和POST方法的区别"></a>3.GET方法和POST方法的区别</h3><blockquote>
-<p>1.使用目标不同：<br>POST与GET都用于获取信息，但是GET方式仅仅是查询，并不对服务器上的内容产生任何作用结果；每次GET的内容都是相同的。<br>POST则常用于发送一定的内容进行某些修改操作。<br>2.大小不同：<br>由于不同的浏览器对URL的长度大小有一定的字符限制，因此由于GET方式放在URL的首部中，自然也跟着首先，但是具体的大小要依浏览器而定。<br>POST方式则是把内容放在报文内容中，因此只要报文的内容没有限制，它的大小就没有限制。<br>3.安全性不同：<br>上面也说了GET是直接添加到URL后面的，直接就可以在URL中看到内容。<br>而POST是放在报文内部的，用户无法直接看到。</p>
+<h2 id="二-3XX重定向"><a href="#二-3XX重定向" class="headerlink" title="二.3XX重定向"></a>二.3XX重定向</h2><blockquote>
+<p>3XX响应结果表明浏览器需要执行某些特殊的处理以正确处理请求。</p>
 </blockquote>
-<p><strong>总的来说，GET用于获取某个内容，POST用于提交某种数据请求。<br>按照使用场景来说，一般用户注册的内容属于私密的，这应该使用POST方式；<br>而针对某一内容的查询，为了快速的响应，可以使用GET方式。</strong></p>
-<h3 id="HTTP-1-0-和1-1支持的方法列表图："><a href="#HTTP-1-0-和1-1支持的方法列表图：" class="headerlink" title="HTTP 1.0 和1.1支持的方法列表图："></a>HTTP 1.0 和1.1支持的方法列表图：</h3><p><img src="http://op6dvs9c7.bkt.clouddn.com/4.png" alt="HTTP 1.0 和1.1支持的方法列表图"></p>
+<h3 id="2-1-301-Moved-Permanently"><a href="#2-1-301-Moved-Permanently" class="headerlink" title="2.1 301 Moved Permanently"></a>2.1 301 Moved Permanently</h3><blockquote>
+<p>永久性重定向。<br>该状态码表示请求的资源已被分配了新的URI，以后使用资源现在所指的URI。</p>
+</blockquote>
+<ul>
+<li>也就是说，如果已经把资源对应的URI保存为书签了，这时应该按Location首部字段提示的URI重新保存。</li>
+<li>像下方给出的请求URI，当指定资源路径的最后忘记添加斜杠“/”就会产生301状态码。</li>
+</ul>
+<blockquote>
+<p><a href="http://emample.com/sample" target="_blank" rel="external">http://emample.com/sample</a>  <strong>只是示例不要点击链接！</strong></p>
+</blockquote>
+<h3 id="2-2-302-Found"><a href="#2-2-302-Found" class="headerlink" title="2.2 302 Found"></a>2.2 302 Found</h3><blockquote>
+<p>临时性重定向。<br>该状态码表示请求的资源已被分配了新的URI，希望用户（本次请求）能使用新的URI访问。</p>
+</blockquote>
+<ul>
+<li>和301 Moved Permanently状态码相似，但302状态码代表的资源不是被永久移动，只是临时性质的。</li>
+<li>换句话说、已移动的资源对应的URI将来还有可能发生改变。</li>
+<li>比如，用户URI保存成书签，但不会像301状态码出现时那样去更新书签，而是依旧保留返回302状态码的页面对应的URI。</li>
+</ul>
+<h3 id="2-3-303-See-Other"><a href="#2-3-303-See-Other" class="headerlink" title="2.3 303 See Other"></a>2.3 303 See Other</h3><blockquote>
+<p>该状态码表示由于请求对应的资源存在着另一个URI，应使用GET方法定向获取请求的资源。</p>
+</blockquote>
+<ul>
+<li>303状态码和302 Found状态码有着相同的功能，但303状态码明确表示客户端应当采用GET方法获取资源，这点与302状态码有区别。</li>
+<li>比如，当使用POST方法访问CGI程序，其执行后的处理结果是希望客户端能以GET方法重定向到另一个URI上去时，返回303状态码是最理想的。</li>
+</ul>
+<blockquote>
+<p><strong>注：当301、302、303响应状态码返回时，几乎所有的浏览器都会把POST改成GET，并删除请求报文内的主体，之后请求会自定再次发送。<br>301，302标准是禁止将POST方法改变成GET方法的，但实际使用时大家都会这么做。</strong></p>
+</blockquote>
+<h3 id="2-4-304-Not-Modified"><a href="#2-4-304-Not-Modified" class="headerlink" title="2.4 304 Not Modified"></a>2.4 304 Not Modified</h3><blockquote>
+<p>该状态码表示客户端发送附带条件的请求时，服务器端允许请求访问资源，但未满足条件的情况</p>
+</blockquote>
+<p><strong>304状态码返回时，不包含任何响应的主体部分。304虽然被划分在3XX类型中，但是和重定向没有关系。</strong></p>
+<h3 id="2-5-307-Temporary-Redirect"><a href="#2-5-307-Temporary-Redirect" class="headerlink" title="2.5 307 Temporary Redirect"></a>2.5 307 Temporary Redirect</h3><blockquote>
+<p>临时重定向。该状态码与302Found 有着相同的含义。</p>
+</blockquote>
+<ul>
+<li>尽管302标准禁止POST变换成GET，但实际使用时大家并不遵守。</li>
+<li>307会遵照浏览器标准，不会从POST变成GET。</li>
+<li>但是，对于处理响应时的行为，每种浏览器有可能出现不同的情况。(！！浏览器的兼容性！！)</li>
+</ul>
 <hr>
-<h2 id="解决TCP连接在HTTP通信断开的问题"><a href="#解决TCP连接在HTTP通信断开的问题" class="headerlink" title="解决TCP连接在HTTP通信断开的问题"></a>解决TCP连接在HTTP通信断开的问题</h2><h3 id="1-HTTP持久连接的方法"><a href="#1-HTTP持久连接的方法" class="headerlink" title="1.HTTP持久连接的方法"></a>1.HTTP持久连接的方法</h3><ul>
-<li>提出了HTTP持久连接的方法，持久连接的特点是，只要任意一端没有明确提出断开连接，则保持TCP连接状态。<br><strong>注：持久连接旨在建立1次TCO连接后进行多次请求和响应的交互。</strong></li>
-<li>持久连接的好处在于减少了TCP连接的重复建立和断开所造成的额外开销，减轻了服务区端的负载。另外，减少开销的那部分时间，使HTTP请求和响应能够更早地结束，这样WEB页面的显示速度也就相应提高了。</li>
-<li>在HTTP/1.1中，所有的连接默认都是持久连接，但在HTTP/1.0内未标准化。虽然有一部分服务器通过非标准的手段实现了持久连接，但服务器端不一定能够支持持久连接。毫无疑问，除了服务器端，客户端也需要支持持久连接。</li>
+<h2 id="三-4XX客户端错误"><a href="#三-4XX客户端错误" class="headerlink" title="三.4XX客户端错误"></a>三.4XX客户端错误</h2><blockquote>
+<p>4XX的响应结果表明客户端是发生错误的原因所在。</p>
+</blockquote>
+<h3 id="3-1-400-Bad-Request"><a href="#3-1-400-Bad-Request" class="headerlink" title="3.1 400 Bad Request"></a>3.1 400 Bad Request</h3><blockquote>
+<p>该状态码表示请求报文中存在语法错误。</p>
+</blockquote>
+<ul>
+<li>当错误发生时，需修改请求的内容后再次发送请求。</li>
+<li>另外，浏览器会像200OK 一样对待该状态码。</li>
 </ul>
-<h3 id="2-延伸：管线化"><a href="#2-延伸：管线化" class="headerlink" title="2.延伸：管线化"></a>2.延伸：管线化</h3><ul>
-<li>持久连接使多数请求以管线化方式发送成为可能。</li>
-<li>以前发送请求后需等待并收到响应，才能发送下一个请求。</li>
-<li>管线化技术出现后，不用等待响应亦可直接发送下一个请求。</li>
+<h3 id="3-2-401-Unauthorized"><a href="#3-2-401-Unauthorized" class="headerlink" title="3.2 401 Unauthorized"></a>3.2 401 Unauthorized</h3><blockquote>
+<p>该状态码表示发送的请求需要有通过HTTP认证（BASIS认证、DIGEST认证）的认证信息。<br>另外若之前已进行一次请求，则表示用户认证失败。</p>
+</blockquote>
+<ul>
+<li>返回含有401的响应必须包含一个适用于被请求资源的WWW-Authenticate 首部用以质询（challenge）用户信息。</li>
+<li>当浏览器初次接收到401响应，会弹出认证用的对话窗口。</li>
 </ul>
+<h3 id="3-3-403-Forbidden"><a href="#3-3-403-Forbidden" class="headerlink" title="3.3 403 Forbidden"></a>3.3 403 Forbidden</h3><blockquote>
+<p>该状态码表明对请求资源的访问被浏览器拒绝了。</p>
+</blockquote>
+<ul>
+<li>服务器端没有必要给出拒绝的详细理由，但如果想作说明的话，</li>
+<li>可以在实体的主体部分对原因进行描述，这样就能让用户看到了。</li>
+</ul>
+<h3 id="3-4-404-Not-Found"><a href="#3-4-404-Not-Found" class="headerlink" title="3.4 404 Not Found"></a>3.4 404 Not Found</h3><blockquote>
+<p>该状态码表明服务器上无法找到请求的资源。除此之外，也可以在服务器端拒绝请求且不想说明理由时使用。</p>
+</blockquote>
 <hr>
-<h2 id="Cookie的引入"><a href="#Cookie的引入" class="headerlink" title="Cookie的引入"></a>Cookie的引入</h2><h3 id="1-HTTP是无状态协议，它不对之前发生过的请求和响应的状态锦亭管理。"><a href="#1-HTTP是无状态协议，它不对之前发生过的请求和响应的状态锦亭管理。" class="headerlink" title="1.HTTP是无状态协议，它不对之前发生过的请求和响应的状态锦亭管理。"></a>1.HTTP是无状态协议，它不对之前发生过的请求和响应的状态锦亭管理。</h3><ul>
-<li>也就是说，无法根据之前的状态进行本次的情求处理。</li>
-<li>无状态的HTTP协议也是有优点的。由于不必保存状态，自然可减少服务器的CPU及内存资源的消耗。</li>
-<li>从另一侧面来说，也正是因为HTTP协议本身是非常简单的，所以才会被应用在各种场景里。</li>
-</ul>
-<p><strong>注：如果让服务器管理全部客户端状态则会成为负担。</strong></p>
-<h3 id="2-Cookie工作流程"><a href="#2-Cookie工作流程" class="headerlink" title="2.Cookie工作流程"></a>2.Cookie工作流程</h3><ul>
-<li>Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户端的状态。</li>
-<li>Cookie会根据从服务器端发送的响应报文内的一个叫做Set-Cookie的首部字段信息，通知客户端保存Cookie。</li>
-<li>当下次客户端再往服务器发送请求时，客户端会自动在请求报文中加上Cookie值后发送出去。<br>服务器端发现客户端发送过来的Cookie后，回去检查究竟是从哪个客户端发来的连接请求，然后对比服务器上的记录，最后的到之前的状态信息。</li>
-</ul>
-<h3 id="图示："><a href="#图示：" class="headerlink" title="图示："></a>图示：</h3><p><img src="http://op6dvs9c7.bkt.clouddn.com/5.png" alt="Cookie作用示例"></p>
+<h2 id="四-5XX服务器错误"><a href="#四-5XX服务器错误" class="headerlink" title="四.5XX服务器错误"></a>四.5XX服务器错误</h2><blockquote>
+<p>5XX的响应结果表明服务器本身发生错误。</p>
+</blockquote>
+<h3 id="4-1-500-Internal-Server-Error"><a href="#4-1-500-Internal-Server-Error" class="headerlink" title="4.1 500 Internal Server Error"></a>4.1 500 Internal Server Error</h3><blockquote>
+<p>该状态码表明服务器端再执行请求时发生了错误。也有可能是WEB应用存在的BUG或某些临时的故障。</p>
+</blockquote>
+<h3 id="4-2-503-Service-Unavailable"><a href="#4-2-503-Service-Unavailable" class="headerlink" title="4.2 503 Service Unavailable"></a>4.2 503 Service Unavailable</h3><blockquote>
+<p>该状态码表明服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。</p>
+</blockquote>
+<p><strong>如果事先得知解除以上状况需要的时间，最好写入Retry-After首部字段再返回给客户端。</strong></p>
+<blockquote>
+<p>注： 状态码和状况的不一致<br>不少返回的状态码响应都是错误的，但是用户可能察觉不到这点。<br>比如WEB应用程序内部发生错误，状态码依然返回200OK，这种情况也经常遇到。</p>
+</blockquote>
 
       
     </div>
@@ -455,18 +532,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/31/图解HTTP读书笔记三/" rel="next" title="图解HTTP读书笔记三">
-                <i class="fa fa-chevron-left"></i> 图解HTTP读书笔记三
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/27/图解HTTP读书笔记一/" rel="prev" title="图解HTTP读书笔记一">
-                图解HTTP读书笔记一 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/31/图解HTTP读书笔记三/" rel="prev" title="图解HTTP读书笔记三">
+                图解HTTP读书笔记三 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图解HTTP协议读书笔记二"><span class="nav-number">1.</span> <span class="nav-text">图解HTTP协议读书笔记二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从告知浏览器意图的HTTP方法继续我的旅程"><span class="nav-number">1.1.</span> <span class="nav-text">从告知浏览器意图的HTTP方法继续我的旅程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#告知浏览器意图的HTTP方法"><span class="nav-number">1.2.</span> <span class="nav-text">告知浏览器意图的HTTP方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-GET方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.GET方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-POST方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.POST方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-GET方法和POST方法的区别"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.GET方法和POST方法的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-0-和1-1支持的方法列表图："><span class="nav-number">1.2.4.</span> <span class="nav-text">HTTP 1.0 和1.1支持的方法列表图：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决TCP连接在HTTP通信断开的问题"><span class="nav-number">1.3.</span> <span class="nav-text">解决TCP连接在HTTP通信断开的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HTTP持久连接的方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.HTTP持久连接的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-延伸：管线化"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.延伸：管线化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的引入"><span class="nav-number">1.4.</span> <span class="nav-text">Cookie的引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HTTP是无状态协议，它不对之前发生过的请求和响应的状态锦亭管理。"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.HTTP是无状态协议，它不对之前发生过的请求和响应的状态锦亭管理。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Cookie工作流程"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.Cookie工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图示："><span class="nav-number">1.4.3.</span> <span class="nav-text">图示：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图解HTTP协议读书笔记四"><span class="nav-number">1.</span> <span class="nav-text">图解HTTP协议读书笔记四</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP状态码"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以下内容将以HTTP状态码为主要内容"><span class="nav-number">1.2.</span> <span class="nav-text">以下内容将以HTTP状态码为主要内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一-2XX成功"><span class="nav-number">1.3.</span> <span class="nav-text">一.2XX成功</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-200-OK"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.1 200 OK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-204-No-Content"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.2 204 No Content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-206-Partial-Content"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.3 206 Partial Content</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-3XX重定向"><span class="nav-number">1.4.</span> <span class="nav-text">二.3XX重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-301-Moved-Permanently"><span class="nav-number">1.4.1.</span> <span class="nav-text">2.1 301 Moved Permanently</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-302-Found"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.2 302 Found</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-303-See-Other"><span class="nav-number">1.4.3.</span> <span class="nav-text">2.3 303 See Other</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-304-Not-Modified"><span class="nav-number">1.4.4.</span> <span class="nav-text">2.4 304 Not Modified</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-307-Temporary-Redirect"><span class="nav-number">1.4.5.</span> <span class="nav-text">2.5 307 Temporary Redirect</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-4XX客户端错误"><span class="nav-number">1.5.</span> <span class="nav-text">三.4XX客户端错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-400-Bad-Request"><span class="nav-number">1.5.1.</span> <span class="nav-text">3.1 400 Bad Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-401-Unauthorized"><span class="nav-number">1.5.2.</span> <span class="nav-text">3.2 401 Unauthorized</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-403-Forbidden"><span class="nav-number">1.5.3.</span> <span class="nav-text">3.3 403 Forbidden</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-404-Not-Found"><span class="nav-number">1.5.4.</span> <span class="nav-text">3.4 404 Not Found</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-5XX服务器错误"><span class="nav-number">1.6.</span> <span class="nav-text">四.5XX服务器错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-500-Internal-Server-Error"><span class="nav-number">1.6.1.</span> <span class="nav-text">4.1 500 Internal Server Error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-503-Service-Unavailable"><span class="nav-number">1.6.2.</span> <span class="nav-text">4.2 503 Service Unavailable</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
