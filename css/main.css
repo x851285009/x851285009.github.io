@@ -1021,6 +1021,13 @@ pre .javascript .function {
   background: #ccc;
   border-top-color: #ccc;
 }
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 50px;
+}
 @media (max-width: 767px) {
   .pagination {
     border-top: none;
@@ -1827,7 +1834,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7a6aff;
+  background: #0b1b4f;
 }
 .links-of-blogroll {
   font-size: 13px;
