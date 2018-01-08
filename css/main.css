@@ -1834,7 +1834,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a869ff;
+  background: #f09;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2714,6 +2714,17 @@ embed {
   -moz-box-shadow: 0 0 14px #cacbcc;
   box-shadow: 0 0 14px #cacbcc;
   background: #fff;
+  border-radius: 10px;
+}
+.brand {
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  color: #fff;
+  background: #222;
+  border-bottom: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #666;
 }
 #gitment-display-button {
   display: inline-block;
