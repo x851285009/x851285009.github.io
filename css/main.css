@@ -971,6 +971,13 @@ pre .javascript .function {
   text-align: center;
   border-top: 1px solid #eee;
 }
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 50px;
+}
 .page-number-basic,
 .pagination .prev,
 .pagination .next,
@@ -1020,13 +1027,6 @@ pre .javascript .function {
   color: #fff;
   background: #ccc;
   border-top-color: #ccc;
-}
-.footer {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  min-height: 50px;
 }
 @media (max-width: 767px) {
   .pagination {
@@ -1834,7 +1834,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0b1b4f;
+  background: #a869ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2714,6 +2714,17 @@ embed {
   -moz-box-shadow: 0 0 14px #cacbcc;
   box-shadow: 0 0 14px #cacbcc;
   background: #fff;
+}
+#gitment-display-button {
+  display: inline-block;
+  padding: 0 15px;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 10px;
 }
 .site-author-image {
   display: block;
