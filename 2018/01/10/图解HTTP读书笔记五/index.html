@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="HTTP协议,读书笔记," />
 
 
 
@@ -86,15 +86,20 @@
 
 
 
-<meta name="description" content="满含热情的热爱前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="江湖夜雨十年灯">
-<meta property="og:url" content="blog.fushily.cn/archives/index.html">
+<meta name="description" content="图解HTTP协议读书笔记五与http协议协作的web服务器1.1 用单台虚拟主机实现多个域名 HTTP/1.1 规范允许一台HTTP服务器搭建多个Web站点。比如，提供Web托管服务的提供商，可以用一台服务器为多位客户服务，也可以以每位客户持有的域名运行各自不同的网站。这是因为利用了虚拟主机（Virtual Host ,又称虚拟服务器）的功能。即使物理层面只有一台服务器，但只要使用虚拟主机的功能，">
+<meta name="keywords" content="HTTP协议,读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解HTTP读书笔记五">
+<meta property="og:url" content="blog.fushily.cn/2018/01/10/图解HTTP读书笔记五/index.html">
 <meta property="og:site_name" content="江湖夜雨十年灯">
-<meta property="og:description" content="满含热情的热爱前端">
+<meta property="og:description" content="图解HTTP协议读书笔记五与http协议协作的web服务器1.1 用单台虚拟主机实现多个域名 HTTP/1.1 规范允许一台HTTP服务器搭建多个Web站点。比如，提供Web托管服务的提供商，可以用一台服务器为多位客户服务，也可以以每位客户持有的域名运行各自不同的网站。这是因为利用了虚拟主机（Virtual Host ,又称虚拟服务器）的功能。即使物理层面只有一台服务器，但只要使用虚拟主机的功能，">
+<meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/11.png">
+<meta property="og:image" content="http://op6dvs9c7.bkt.clouddn.com/12.png">
+<meta property="og:updated_time" content="2018-01-10T11:48:24.147Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="江湖夜雨十年灯">
-<meta name="twitter:description" content="满含热情的热爱前端">
+<meta name="twitter:title" content="图解HTTP读书笔记五">
+<meta name="twitter:description" content="图解HTTP协议读书笔记五与http协议协作的web服务器1.1 用单台虚拟主机实现多个域名 HTTP/1.1 规范允许一台HTTP服务器搭建多个Web站点。比如，提供Web托管服务的提供商，可以用一台服务器为多位客户服务，也可以以每位客户持有的域名运行各自不同的网站。这是因为利用了虚拟主机（Virtual Host ,又称虚拟服务器）的功能。即使物理层面只有一台服务器，但只要使用虚拟主机的功能，">
+<meta name="twitter:image" content="http://op6dvs9c7.bkt.clouddn.com/11.png">
 
 
 
@@ -124,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="blog.fushily.cn/archives/"/>
+  <link rel="canonical" href="blog.fushily.cn/2018/01/10/图解HTTP读书笔记五/"/>
 
 
 
 
 
-  <title>归档 | 江湖夜雨十年灯</title>
+  <title>图解HTTP读书笔记五 | 江湖夜雨十年灯</title>
   
 
 
@@ -151,7 +156,7 @@
  <div class="bg_content">
       <canvas id="canvas"></canvas>
  </div>
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/x851285009"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
 
@@ -266,301 +271,246 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="blog.fushily.cn/2018/01/10/图解HTTP读书笔记五/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="墨月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖夜雨十年灯">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">图解HTTP读书笔记五</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T19:29:06+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 7 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/10/图解HTTP读书笔记五/" itemprop="url">
-              
-                <span itemprop="name">图解HTTP读书笔记五</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-10T19:29:06+08:00"
-              content="2018-01-10" >
-          01-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/03/图解HTTP读书笔记四/" itemprop="url">
-              
-                <span itemprop="name">图解HTTP读书笔记四</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-03T18:57:47+08:00"
-              content="2018-01-03" >
-          01-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/31/图解HTTP读书笔记三/" itemprop="url">
-              
-                <span itemprop="name">图解HTTP读书笔记三</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-31T19:28:43+08:00"
-              content="2017-12-31" >
-          12-31
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/29/图解HTTP读书笔记二/" itemprop="url">
-              
-                <span itemprop="name">图解HTTP读书笔记二</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T18:39:23+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/27/图解HTTP读书笔记一/" itemprop="url">
-              
-                <span itemprop="name">图解HTTP读书笔记一</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-27T17:57:55+08:00"
-              content="2017-12-27" >
-          12-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="图解HTTP协议读书笔记五"><a href="#图解HTTP协议读书笔记五" class="headerlink" title="图解HTTP协议读书笔记五"></a>图解HTTP协议读书笔记五</h1><h2 id="与http协议协作的web服务器"><a href="#与http协议协作的web服务器" class="headerlink" title="与http协议协作的web服务器"></a>与http协议协作的web服务器</h2><h3 id="1-1-用单台虚拟主机实现多个域名"><a href="#1-1-用单台虚拟主机实现多个域名" class="headerlink" title="1.1 用单台虚拟主机实现多个域名"></a>1.1 用单台虚拟主机实现多个域名</h3><blockquote>
+<p>HTTP/1.1 规范允许一台HTTP服务器搭建多个Web站点。比如，提供Web托管服务的提供商，<br>可以用一台服务器为多位客户服务，也可以以每位客户持有的域名运行各自不同的网站。<br>这是因为利用了虚拟主机（Virtual Host ,又称虚拟服务器）的功能。<br>即使物理层面只有一台服务器，但只要使用虚拟主机的功能，则可以假想已具有多台服务器。</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>客户端使用HTTP协议访问服务器时，会经常采用类似www.xxxx.com这样的主机名和域名</li>
+<li>在互联网上，域名通过DNS服务映射到IP地址（域名解析）之后访问目标网站。可见，当请求发送服务器时，已经是以IP地址形式访问了。</li>
+<li>所以，如果一台服务器内托管了  www.xxx.com和www.yyy.com这两个域名，当收到请求时就需要弄清楚究竟要访问哪个网站。</li>
+</ul>
+<p><strong>注:若www.xxx.com 和www.yyy.com 同时部署在同一个服务器上（相同的IP地址），使用DNS服务解析域名后，两者的访问IP地址会相同。</strong></p>
+<blockquote>
+<p>在相同的IP地址下，由于虚拟主机可以寄存多个不同主机名和域名的Web网站，因此在发送HTTP请求时，必须在Host首部内玩政指定主机名或域名的URI</p>
+</blockquote>
+<hr>
+<h3 id="1-2-通信数据转发程序：代理、网关、隧道"><a href="#1-2-通信数据转发程序：代理、网关、隧道" class="headerlink" title="1.2 通信数据转发程序：代理、网关、隧道"></a>1.2 通信数据转发程序：代理、网关、隧道</h3><blockquote>
+<p>HTTP通信时，除客户端和服务器以外，还有一些用于通信数据转发的应用程序，例如代理、网关和隧道。它们可以配合服务器工作。<br>这些应用程序和服务器可以将请求转发给同喜线路上的下一站服务器，并且能接收从那台服务器发送的响应再转发给客户端。</p>
+</blockquote>
+<ul>
+<li>代理：<br>代理是一种有转发的应用程序，它扮演了位于服务器和客户端“中间人”的角色，接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。</li>
+<li>网关：<br>网关是转发其他服务器通信数据的服务器，接收从客户端发送来的请求时，它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉，自己的通信目标是一个网关。</li>
+<li>隧道：<br>隧道是在相隔甚远的客户端和服务器两者之间进行中转，并保持双方通信连接的应用程序。</li>
+</ul>
+<h4 id="1-2-1-代理"><a href="#1-2-1-代理" class="headerlink" title="1.2.1 代理"></a>1.2.1 代理</h4><blockquote>
+<p>代理服务器的基本行为就是接收客户端发送的请求后转发其他服务器。代理不改变请求的URI，会直接发送给前方持有资源的目标服务器。<br>持有资源实体的服务器被称为资源服务器。从源服务器返回的响应经过代理服务器后再传给客户端。</p>
+</blockquote>
+<ul>
+<li>在HTTP通信过程中，可以联接多台代理服务区。</li>
+<li>请求和响应的转发会经过数台类似锁链一样连接起来的代理服务器。</li>
+<li>转发时，需要附加Via首部字段以标记处经过的主机信息。</li>
+</ul>
+<p><strong>图示：</strong><br><img src="http://op6dvs9c7.bkt.clouddn.com/11.png" alt="图示1"></p>
+<p><strong>注：通过设置组织内部的代理服务器可做到针对特定URI访问的控制。</strong></p>
+<blockquote>
+<p>使用代理服务器的理由有：利用缓存技术(后面详解)减少网络带宽的流量，组织内部针对特定网站的访问控制，以获取访问日志为主要目的，等等。</p>
+</blockquote>
+<h5 id="代理会有多种使用方法，按两种基准分类。一种是是否使用缓存，另一种是是否会修改报文。"><a href="#代理会有多种使用方法，按两种基准分类。一种是是否使用缓存，另一种是是否会修改报文。" class="headerlink" title="代理会有多种使用方法，按两种基准分类。一种是是否使用缓存，另一种是是否会修改报文。"></a>代理会有多种使用方法，按两种基准分类。一种是是否使用缓存，另一种是是否会修改报文。</h5><ul>
+<li>缓存代理<br>代理转发会预先将资源的副本（缓存）保存在代理服务器上。<br>当代理再次接收到对相同资源的请求时，就可以不从源服务器那里获取资源，而是将之前缓存的资源作为响应返回。</li>
+<li>透明代理<br>转发请求或响应时，不对报文做任何加工的代理类型被称为透明代理。反之，对报文内容进行加工的代理被称为非透明代理。</li>
+</ul>
+<h4 id="1-2-2-网关"><a href="#1-2-2-网关" class="headerlink" title="1.2.2 网关"></a>1.2.2 网关</h4><ul>
+<li>网关的工作机制和代理十分相似。而网关能使通信线路上的服务器提供非HTTP协议服务。</li>
+<li>利用网关能提高通信的安全性，因为可以在客户端与网关之间的通信线路上加密以确保连接的安全。</li>
+<li>比如，网关可以连接数据库，使用SQL语句查询数据。</li>
+<li>另外，在WEB购物网站上进行信用卡结算时，网关可以和信用卡结算系统联动。</li>
+</ul>
+<hr>
+<h3 id="1-3-保存资源的缓存"><a href="#1-3-保存资源的缓存" class="headerlink" title="1.3 保存资源的缓存"></a>1.3 保存资源的缓存</h3><blockquote>
+<p>缓存是指代理服务器或客户端本地磁盘内保存的资源副本。利用缓存可减少对源服务器的访问，因此也就节省了通信流量和通信时间。</p>
+</blockquote>
+<p><strong>缓存服务器是代理服务器的一种，并归类在缓存代理类型中。<br>换句话说，当代理转发从服务器返回的响应时，代理服务器将会保存一份资源的副本。</strong></p>
+<p><strong>图示：</strong></p>
+<p><img src="http://op6dvs9c7.bkt.clouddn.com/12.png" alt="图示2"></p>
+<blockquote>
+<p>缓存服务器的优势在于利用缓存可避免多次从源服务器转发资源。因此客户端可就近从缓存服务器上获取资源，而资源服务器也不必多次处理相同的请求了。</p>
+</blockquote>
+<h4 id="1-3-1-缓存的有效期限"><a href="#1-3-1-缓存的有效期限" class="headerlink" title="1.3.1 缓存的有效期限"></a>1.3.1 缓存的有效期限</h4><blockquote>
+<p>即便缓存服务器内有缓存，也不能保证每次都会返回对同资源的请求。因为这关系到被缓存资源的有效性问题。</p>
+</blockquote>
+<ul>
+<li>当遇上源服务器上的资源更新时，如果还是使用不变的缓存，那就会演变成返回更新前的“旧”资源了。</li>
+<li>即使存在缓存，也会因为客户端的要求、缓存的有效期等因素，向源服务器确认资源的有效性。</li>
+<li>若判断缓存失效，缓存服务器将会再次从源服务器上获取“新”资源。</li>
+</ul>
+<h4 id="1-3-2-客户端发的缓存"><a href="#1-3-2-客户端发的缓存" class="headerlink" title="1.3.2 客户端发的缓存"></a>1.3.2 客户端发的缓存</h4><blockquote>
+<p>缓存不仅可以存在于缓存服务器内，还可以存在客户端浏览器中。以IE为例，把客户端缓存称为临时网络文件。</p>
+</blockquote>
+<ul>
+<li>浏览器缓存如果有效，就不必再向服务器请求相同的资源了，可以直接从本地磁盘内读取。</li>
+<li>另外，和缓存服务器相同的一点是，当判定缓存过期后，会向源服务器确认资源的有效性。</li>
+<li>若判断浏览器缓存失效，浏览器会再次请求新资源。</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/11/JavaScript笔记-DOM初步/" itemprop="url">
-              
-                <span itemprop="name">JavaScript笔记_DOM初步</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-11T20:22:01+08:00"
-              content="2017-05-11" >
-          05-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/29/测试的第一条博客/" itemprop="url">
-              
-                <span itemprop="name">测试的第一条博客</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-29T22:43:39+08:00"
-              content="2017-04-29" >
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP协议/" rel="tag"><i class="fa fa-tag"></i> HTTP协议</a>
+          
+            <a href="/tags/读书笔记/" rel="tag"><i class="fa fa-tag"></i> 读书笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/03/图解HTTP读书笔记四/" rel="prev" title="图解HTTP读书笔记四">
+                图解HTTP读书笔记四 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -568,6 +518,14 @@
 
 
           
+  
+       
+         <div onclick="ShowGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+         <div id="gitment-container" style="display:none"></div>
+       
+    </div>
+  
+
 
         </div>
         
@@ -588,8 +546,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -675,6 +642,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图解HTTP协议读书笔记五"><span class="nav-number">1.</span> <span class="nav-text">图解HTTP协议读书笔记五</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与http协议协作的web服务器"><span class="nav-number">1.1.</span> <span class="nav-text">与http协议协作的web服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-用单台虚拟主机实现多个域名"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 用单台虚拟主机实现多个域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-通信数据转发程序：代理、网关、隧道"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 通信数据转发程序：代理、网关、隧道</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-代理"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.2.1 代理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#代理会有多种使用方法，按两种基准分类。一种是是否使用缓存，另一种是是否会修改报文。"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">代理会有多种使用方法，按两种基准分类。一种是是否使用缓存，另一种是是否会修改报文。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-网关"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.2.2 网关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-保存资源的缓存"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 保存资源的缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-缓存的有效期限"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">1.3.1 缓存的有效期限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-客户端发的缓存"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">1.3.2 客户端发的缓存</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -814,6 +797,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
