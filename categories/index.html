@@ -329,6 +329,17 @@
           locale: 'zh-CN'
         })
       </script>
+      <script>
+        var wildfireConfig = () => ({
+            databaseProvider : 'wilddog',
+            databaseConfig : {
+                              "rules": {
+                                ".read": true,
+                                ".write": true
+                              }
+                            }
+        })
+      </script>
       <script src='https://unpkg.com/wildfire/dist/wildfire.auto.js'></script>
     
   </div>
