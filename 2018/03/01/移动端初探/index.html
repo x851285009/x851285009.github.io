@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记,移动端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="移动端初探 web移动端由于设备的原因需要设配移动端我们需要了解适配移动端的相关知识">
+<meta name="keywords" content="笔记,移动端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端初探">
+<meta property="og:url" content="blog.fushily.cn/2018/03/01/移动端初探/index.html">
+<meta property="og:site_name" content="江湖夜雨十年灯">
+<meta property="og:description" content="移动端初探 web移动端由于设备的原因需要设配移动端我们需要了解适配移动端的相关知识">
+<meta property="og:updated_time" content="2018-03-02T10:50:28.821Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端初探">
+<meta name="twitter:description" content="移动端初探 web移动端由于设备的原因需要设配移动端我们需要了解适配移动端的相关知识">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="blog.fushily.cn/2018/03/01/移动端初探/"/>
+
+
+
+
+
+  <title>移动端初探 | 江湖夜雨十年灯</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ <div class="bg_content">
+      <canvas id="canvas"></canvas>
+ </div>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/x851285009"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">江湖夜雨十年灯</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="blog.fushily.cn/2018/03/01/移动端初探/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="墨月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖夜雨十年灯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端初探</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T16:08:09+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="移动端初探"><a href="#移动端初探" class="headerlink" title="移动端初探"></a>移动端初探</h1><blockquote>
+<p>web移动端由于设备的原因需要设配移动端我们需要了解适配移动端的相关知识</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>4个像素<ul>
+<li>物理像素</li>
+<li>css像素</li>
+<li>独立像素</li>
+<li>位图像素</li>
+</ul>
+</li>
+<li>3个视口<ul>
+<li>布局视口</li>
+<li>视觉视口</li>
+<li>理想视口</li>
+</ul>
+</li>
+<li>2个操作(PC端？移动端)<ul>
+<li>放大</li>
+<li>缩小</li>
+</ul>
+</li>
+<li>1个比例<ul>
+<li>像素比</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-四个像素之间的关系"><a href="#1-四个像素之间的关系" class="headerlink" title="1.四个像素之间的关系"></a>1.四个像素之间的关系</h2><blockquote>
+<p>物理像素和设备独立像素:<br>像素比: 一个方向上占据一块屏幕所需要的物理像素的个数 /一个方向上占据一块屏幕所需要的设备独立像素的个数  =2;</p>
+<p>物理像素和位图像素:<br>1:1的时候才能完美清晰的展示</p>
+</blockquote>
+<ul>
+<li><p>物理像素和css像素</p>
+<ul>
+<li>普通屏:1比1</li>
+<li>高清屏: <ul>
+<li>加name为viewport的meta标签<ul>
+<li>像素比</li>
+</ul>
+</li>
+<li>没有加name为viewport的meta标签<ul>
+<li>布局视口尺寸 / 屏幕的分辨率</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>css像素和设备独立像素</p>
+<ul>
+<li>没有加name为viewport的meta标签:没有关系</li>
+<li>加name为viewport的meta标签:可以认为css像素就是设备独立像素</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意@2x 和 @3x图的使用</strong></p>
+</blockquote>
+<hr>
+<h2 id="2-布局视口和视觉视口"><a href="#2-布局视口和视觉视口" class="headerlink" title="2.布局视口和视觉视口"></a>2.布局视口和视觉视口</h2><ul>
+<li><p>layout viewport:</p>
+<ul>
+<li>手机上，为了容纳为桌面浏览器设计的网站，默认的布局视口的宽度远大于屏幕的宽度 </li>
+<li>布局视口的出现，在极大程度上帮助了桌面网站到移动设备上的转移。</li>
+<li>可以通过document.documentElement.clientWidth来获取 </li>
+<li>在pc端，单独一个width为20%的元素最终拿到的值要根据初始包含块的width来决定，因为我们横向的布局都是按初始包含块开始填的，在移动端一样，不过我们这个时候应该叫它布局视口。</li>
+</ul>
+</li>
+<li><p>visual viewport:</p>
+<ul>
+<li>视觉视口语设备屏幕一样宽，并且它的css像素的数量会随用户的缩放而改变</li>
+<li>visual viewport的宽度可以通过window.innerWidth 来获取，</li>
+<li><strong>但在Android 2, Oprea mini 和 UC 8中无法正确获取。</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="3-理想视口"><a href="#3-理想视口" class="headerlink" title="3.理想视口"></a>3.理想视口</h2><blockquote>
+<p>我们分析知道：布局视口的默认宽度并不是一个理想的宽度，对于我们移动设备来说，最理想的情况是用户刚进入页面时不再需要缩放。这就是为什么苹果和其他效仿苹果的浏览器厂商会引进理想视口！<br>只有是专门为移动设备开发的网站，他才有理想视口这一说。而且只有当你在页面中加入viewport的meta标签，理想视口才会生效。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>这一行代码告诉我们，布局视口的宽度应该与理想视口的宽度一致</p>
+<hr>
+<h2 id="4-css像素"><a href="#4-css像素" class="headerlink" title="4.css像素"></a>4.css像素</h2><ul>
+<li>css像素能代表一个设备的大小</li>
+<li>但是CSS像素的值是不确定的</li>
+<li>屏幕大小之间的比较应该使用绝对单位:屏幕尺寸</li>
+</ul>
+<hr>
+<h2 id="5-物理像素与css像素比例"><a href="#5-物理像素与css像素比例" class="headerlink" title="5.物理像素与css像素比例"></a>5.物理像素与css像素比例</h2><ul>
+<li><p>视觉视口(1.决定用户能看到什么；2.包住整个布局视口)</p>
+<ul>
+<li>物理像素:屏幕的分辨率</li>
+<li>css像素: 布局视口尺寸</li>
+</ul>
+</li>
+<li><p>加name为viewport的meta标签</p>
+<ul>
+<li>像素比</li>
+</ul>
+</li>
+<li>没有加name为viewport的meta标签<ul>
+<li>布局视口尺寸 / 屏幕的分辨率</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="6-像素比到底是什么"><a href="#6-像素比到底是什么" class="headerlink" title="6.像素比到底是什么"></a>6.像素比到底是什么</h2><blockquote>
+<p>像素比: 一个方向上占据一块屏幕所需要的物理像素的个数 /一个方向上占据一块屏幕所需要的设备独立像素的个数 </p>
+</blockquote>
+<hr>
+<h2 id="7-理想视口什么时候出现？-像素比什么时候有用？"><a href="#7-理想视口什么时候出现？-像素比什么时候有用？" class="headerlink" title="7.理想视口什么时候出现？ 像素比什么时候有用？"></a>7.理想视口什么时候出现？ 像素比什么时候有用？</h2><blockquote>
+<p>加name为viewport的meta标签    </p>
+</blockquote>
+<hr>
+<h2 id="8-理想视口与设备之间的关系"><a href="#8-理想视口与设备之间的关系" class="headerlink" title="8.理想视口与设备之间的关系"></a>8.理想视口与设备之间的关系</h2><blockquote>
+<p>理想视口的尺寸：设备独立像素所代表的值</p>
+</blockquote>
+<ul>
+<li>不同浏览器在同一设备上理想视口的尺寸可能会不一样</li>
+<li>一款浏览器在不同设备上理想视口的尺寸可能会不一样</li>
+</ul>
+<hr>
+<h2 id="9-思考视口的实质"><a href="#9-思考视口的实质" class="headerlink" title="9.思考视口的实质"></a>9.思考视口的实质</h2><blockquote>
+<p>本质上三个视口的物理尺寸就是屏幕尺寸<br>在不一样的情况下，各个视口所包含的css像素的个数是不一样的</p>
+</blockquote>
+<ul>
+<li><p>布局视口包含的css像素的个数</p>
+<ul>
+<li>980 1024 （浏览器不一样）</li>
+</ul>
+</li>
+<li><p>视觉视口包含的css像素的个数</p>
+<ul>
+<li>默认情况（css像素和物理像素1:1）—&gt; 屏幕的分辨率</li>
+<li>移动端浏览器初始化的时候（视觉视口必须要包住布局视口）  —&gt; 布局视口包含的css像素的个数就是视觉视口所包含的</li>
+<li>用户缩放（只影响视觉视口）<ul>
+<li>放大—&gt; 视觉视口包含的css像素的个数变少</li>
+<li>缩小—&gt; 视觉视口包含的css像素的个数变多</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>理想视口包含的css像素的个数</p>
+<ul>
+<li>设备独立像素所代表的值</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="10-缩放的影响"><a href="#10-缩放的影响" class="headerlink" title="10.缩放的影响"></a>10.缩放的影响</h2><ul>
+<li><p>pc端的缩放:会改变元素的布局（布局视口）</p>
+</li>
+<li><p>移动端（缩放只改变视觉视口内css像素的个数）</p>
+<ul>
+<li><p>放大</p>
+<ul>
+<li>使css像素变大，一个css像素所包含的物理像素的个数变多，元素变的更大</li>
+<li>视觉视口内，css像素的个数变少</li>
+</ul>
+</li>
+<li><p>缩小</p>
+<ul>
+<li>使css像素变小，一个css像素所包含的物理像素的个数变少，元素变的更小</li>
+<li>视觉视口内，css像素的个数变多</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="11-怎么获取三个视口的值"><a href="#11-怎么获取三个视口的值" class="headerlink" title="11.怎么获取三个视口的值"></a>11.怎么获取三个视口的值</h2><ul>
+<li>布局视口：document.documentElement.clientWidth(基本没有兼容性问题) ★</li>
+<li>视觉视口：window.innerWidth（有一点兼容性问题）</li>
+<li>理想视口：screen.width（兼容性问题极大）</li>
+</ul>
+<hr>
+<h2 id="12-完美视口以及meta标签"><a href="#12-完美视口以及meta标签" class="headerlink" title="12.完美视口以及meta标签"></a>12.完美视口以及meta标签</h2><blockquote>
+<p>页面内有过大的元素META标签如下</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0"</span>  /&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="13-会影响布局视口的操作"><a href="#13-会影响布局视口的操作" class="headerlink" title="13.会影响布局视口的操作"></a>13.会影响布局视口的操作</h2><ul>
+<li>1.修改meta内的width属性值(有兼容性问题)</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=320,initial-scale=1.0"</span>  /&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>2.修改meta内的initial-scale属性值</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=320,initial-scale=0.5"</span>  /&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="14-等比问题-涉及适配"><a href="#14-等比问题-涉及适配" class="headerlink" title="14.等比问题(涉及适配)"></a>14.等比问题(涉及适配)</h2><ul>
+<li>没有加name为viewport的meta标签<ul>
+<li>一个相同css像素大小的区域在不同的设备是等比的,<br>在不同的设备上占据的实际物理大小（英寸）不一样</li>
+</ul>
+</li>
+<li>加name为viewport的meta标签<ul>
+<li>一个相同css像素大小的区域在不同的设备是不等比的,<br>在不同的设备上占据的实际物理大小（英寸）是一样的</li>
+</ul>
+</li>
+<li><p>等比是一个必须的需求</p>
+</li>
+<li><p>1.百分百还原设计图 —&gt; 在不同设备上要等比(文字要完美清晰的展示)</p>
+</li>
+<li>2.必须加meta标签 —&gt;导致不等比</li>
+<li>3.适配 —&gt;加上meta标签后也得等比        </li>
+</ul>
+<hr>
+<h2 id="15-设配相关"><a href="#15-设配相关" class="headerlink" title="15.设配相关"></a>15.设配相关</h2><h3 id="15-1-rem适配"><a href="#15-1-rem适配" class="headerlink" title="15.1 rem适配"></a>15.1 rem适配</h3><blockquote>
+<p>rem适配原理：改变了一个元素在不同设备上占据的css像素的个数</p>
+</blockquote>
+<ul>
+<li>rem适配的优缺点:<ul>
+<li>优点:没有破坏完美视口</li>
+<li>缺点:px值到rem的转换太复杂</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-2-viewport适配"><a href="#15-2-viewport适配" class="headerlink" title="15.2 viewport适配"></a>15.2 viewport适配</h3><blockquote>
+<p>viewport适配的原理：viewport适配方案中，每一个元素在不同设备上占据的css像素的个数是一样的,但是css像素和物理像素的比例是不一样的。</p>
+</blockquote>
+<ul>
+<li>viewport适配的优缺点：<ul>
+<li>优点:所量即所得</li>
+<li>缺点:没有使用完美视口</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-3-百分比适配"><a href="#15-3-百分比适配" class="headerlink" title="15.3 百分比适配"></a>15.3 百分比适配</h3><blockquote>
+<p>百分比适配的原理：css中都是用百分比来操作</p>
+</blockquote>
+<ul>
+<li>百分比适配的优缺点：<ul>
+<li>优点:简单快捷</li>
+<li>缺点:不适合应用场景复杂的环境</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-4-适配的应用"><a href="#15-4-适配的应用" class="headerlink" title="15.4 适配的应用"></a>15.4 适配的应用</h3><ul>
+<li>1.适配的方法使用按照实际的应用场景而定。</li>
+<li>2.适配方法是可以混用的。</li>
+</ul>
+<h2 id="16-实现1px-1物理像素"><a href="#16-实现1px-1物理像素" class="headerlink" title="16.实现1px = 1物理像素"></a>16.实现1px = 1物理像素</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*&lt;meta name="viewport" content="width=device-width,initial-scale=1.0"/&gt;*/</span></div><div class="line"><span class="selector-id">#test</span>&#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">media</span> only screen and (-webkit-device-pixel-ratio:<span class="number">2</span> ) &#123;</div><div class="line">  <span class="selector-id">#test</span>&#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scaleY</span>(.5);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">media</span> only screen and (-webkit-device-pixel-ratio:<span class="number">3</span> ) &#123;</div><div class="line">  <span class="selector-id">#test</span>&#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scaleY</span>(.333333333333333333);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="17-全面阻止事件的默认行为"><a href="#17-全面阻止事件的默认行为" class="headerlink" title="17.全面阻止事件的默认行为"></a>17.全面阻止事件的默认行为</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//x为移动端触摸事件	touchstart或者touchmove</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"x"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</div><div class="line">  ev=ev||event;</div><div class="line">  ev.preventDefault();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="18-移动端跳转方案"><a href="#18-移动端跳转方案" class="headerlink" title="18.移动端跳转方案"></a>18.移动端跳转方案</h2><blockquote>
+<p>事件点透:click会发生在点击的像素点的范围内如果没处理的话会触发该范围元素的默认点击行为及产生事件点透</p>
+<p>click 事件在用户点击了一个元素时调用。 click 事件发生在 mousedown 和 mouseup 事件之后。移动端的触摸事件也会产生以上效果这就会导致事件点透的产生</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//移动端由于会产生s事件点透的存在所以要处理跳转的机制</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"touchstart"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</div><div class="line">  ev.preventDefault();</div><div class="line">&#125;)</div><div class="line"><span class="keyword">var</span> aNodes =<span class="built_in">document</span>.querySelectorAll(<span class="string">"a"</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;aNodes.length;i++)&#123;</div><div class="line">  aNodes[i].addEventListener(<span class="string">"touchmove"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>.flag)&#123;</div><div class="line">      <span class="keyword">this</span>.flag=<span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;)		</div><div class="line">  aNodes[i].addEventListener(<span class="string">"touchend"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>.flag)&#123;</div><div class="line">      <span class="built_in">window</span>.location.href=<span class="keyword">this</span>.href;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.flag=<span class="literal">false</span>;</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+            <a href="/tags/移动端/" rel="tag"><i class="fa fa-tag"></i> 移动端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/30/css笔记-bootstrap栅格系统分析/" rel="prev" title="css笔记-bootstrap栅格系统分析">
+                css笔记-bootstrap栅格系统分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+      
+      <style type="text/css">
+        .wildfire_thread a {border-bottom: none}
+      </style>
+      <div class="wildfire_thread"></div>
+      <script type="text/javascript">
+        var wildfireConfig = () => ({
+          databaseProvider: 'wilddog',
+          databaseConfig: {
+          
+            siteId: 'wd6555249862lxthcm'
+          
+          },
+          theme: 'light',
+          locale: 'zh-CN'
+        })
+      </script>
+      <script src='https://unpkg.com/wildfire/dist/wildfire.auto.js'></script>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.png"
+                alt="墨月" />
+            
+              <p class="site-author-name" itemprop="name">墨月</p>
+              <p class="site-description motion-element" itemprop="description">满含热情的热爱前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/x851285009" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yueshangui/activities" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-send"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/c673eb4784e6" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-commenting"></i>简书</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#移动端初探"><span class="nav-number">1.</span> <span class="nav-text">移动端初探</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-四个像素之间的关系"><span class="nav-number">1.1.</span> <span class="nav-text">1.四个像素之间的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-布局视口和视觉视口"><span class="nav-number">1.2.</span> <span class="nav-text">2.布局视口和视觉视口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-理想视口"><span class="nav-number">1.3.</span> <span class="nav-text">3.理想视口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-css像素"><span class="nav-number">1.4.</span> <span class="nav-text">4.css像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-物理像素与css像素比例"><span class="nav-number">1.5.</span> <span class="nav-text">5.物理像素与css像素比例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-像素比到底是什么"><span class="nav-number">1.6.</span> <span class="nav-text">6.像素比到底是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-理想视口什么时候出现？-像素比什么时候有用？"><span class="nav-number">1.7.</span> <span class="nav-text">7.理想视口什么时候出现？ 像素比什么时候有用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-理想视口与设备之间的关系"><span class="nav-number">1.8.</span> <span class="nav-text">8.理想视口与设备之间的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-思考视口的实质"><span class="nav-number">1.9.</span> <span class="nav-text">9.思考视口的实质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-缩放的影响"><span class="nav-number">1.10.</span> <span class="nav-text">10.缩放的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-怎么获取三个视口的值"><span class="nav-number">1.11.</span> <span class="nav-text">11.怎么获取三个视口的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-完美视口以及meta标签"><span class="nav-number">1.12.</span> <span class="nav-text">12.完美视口以及meta标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-会影响布局视口的操作"><span class="nav-number">1.13.</span> <span class="nav-text">13.会影响布局视口的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-等比问题-涉及适配"><span class="nav-number">1.14.</span> <span class="nav-text">14.等比问题(涉及适配)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-设配相关"><span class="nav-number">1.15.</span> <span class="nav-text">15.设配相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#15-1-rem适配"><span class="nav-number">1.15.1.</span> <span class="nav-text">15.1 rem适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-2-viewport适配"><span class="nav-number">1.15.2.</span> <span class="nav-text">15.2 viewport适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-3-百分比适配"><span class="nav-number">1.15.3.</span> <span class="nav-text">15.3 百分比适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-4-适配的应用"><span class="nav-number">1.15.4.</span> <span class="nav-text">15.4 适配的应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-实现1px-1物理像素"><span class="nav-number">1.16.</span> <span class="nav-text">16.实现1px = 1物理像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-全面阻止事件的默认行为"><span class="nav-number">1.17.</span> <span class="nav-text">17.全面阻止事件的默认行为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-移动端跳转方案"><span class="nav-number">1.18.</span> <span class="nav-text">18.移动端跳转方案</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">墨月</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script>
+  'use strict';
+   var _createClass = function () { 
+        function defineProperties(target, props) { 
+           for (var i = 0; i < props.length; i++) { 
+               var descriptor = props[i]; 
+               descriptor.enumerable = descriptor.enumerable || false; 
+               descriptor.configurable = true; 
+               if ("value" in descriptor) descriptor.writable = true; 
+               Object.defineProperty(target, descriptor.key, descriptor); 
+               } 
+            } 
+            return function (Constructor, protoProps, staticProps) { 
+                if (protoProps) defineProperties(Constructor.prototype, protoProps); 
+                if (staticProps) defineProperties(Constructor, staticProps); return Constructor; 
+                }; 
+            }();
+        function _possibleConstructorReturn(self, call) { 
+            if (!self) { 
+                throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                    } 
+                    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+                }
+        function _inherits(subClass, superClass) { 
+            if (typeof superClass !== "function" && superClass !== null) { 
+                throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); 
+                } 
+                subClass.prototype = Object.create(superClass && superClass.prototype, { 
+                    constructor: { value: subClass, enumerable: false, writable: true, configurable: true 
+                    } 
+                    }); 
+                    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; 
+                }
+        function _classCallCheck(instance, Constructor) { 
+            if (!(instance instanceof Constructor)) 
+            { 
+                throw new TypeError("Cannot call a class as a function"); 
+                } 
+            }
+   var Circle = function () {
+      function Circle(x, y) {
+           _classCallCheck(this, Circle);
+           this.x = x;
+           this.y = y;
+           this.r = Math.random() * 10;
+           this._mx = Math.random();
+           this._my = Math.random();
+       }
+      _createClass(Circle, [{
+           key: 'drawCircle',
+           value: function drawCircle(ctx) {
+               ctx.beginPath();
+               //arc() 方法使用一个中心点和半径，为一个画布的当前子路径添加一条弧。
+               ctx.arc(this.x, this.y, this.r, 0, 360);
+               ctx.closePath();
+               ctx.fillStyle = 'rgba(204, 204, 204, 0.3)';
+               ctx.fill();
+           }
+       }, {
+           key: 'drawLine',
+           value: function drawLine(ctx, _circle) {
+               var dx = this.x - _circle.x;
+               var dy = this.y - _circle.y;
+               var d = Math.sqrt(dx * dx + dy * dy);
+               if (d < 150) {
+                   ctx.beginPath();
+                   ctx.moveTo(this.x, this.y); //起始点
+                   ctx.lineTo(_circle.x, _circle.y); //终点
+                   ctx.closePath();
+                   ctx.strokeStyle = 'rgba(204, 204, 204, 0.3)';
+                   ctx.stroke();
+               }
+           }
+       }, {
+           key: 'move',
+           value: function move(w, h) {
+               this._mx = this.x < w && this.x > 0 ? this._mx : -this._mx;
+               this._my = this.y < h && this.y > 0 ? this._my : -this._my;
+               this.x += this._mx / 2;
+               this.y += this._my / 2;
+           }
+       }]);
+       return Circle;
+   }();
+   var currentCirle = function (_Circle) {
+       _inherits(currentCirle, _Circle);
+       function currentCirle(x, y) {
+           _classCallCheck(this, currentCirle);
+           return _possibleConstructorReturn(this, (currentCirle.__proto__ || Object.getPrototypeOf(currentCirle)).call(this, x, y));
+       }
+       _createClass(currentCirle, [{
+           key: 'drawCircle',
+           value: function drawCircle(ctx) {
+               ctx.beginPath();
+               //this.r = (this.r < 14 && this.r > 1) ? this.r + (Math.random() * 2 - 1) : 2;
+               this.r = 8;
+               ctx.arc(this.x, this.y, this.r, 0, 360);
+               ctx.closePath();
+               //ctx.fillStyle = 'rgba(0,0,0,' + (parseInt(Math.random() * 100) / 100) + ')'
+               ctx.fillStyle = 'rgba(204, 204, 204, 0.6)';
+               ctx.fill();
+           }
+       }]);
+       return currentCirle;
+   }(Circle);
+   window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+   var canvas = document.getElementById('canvas');
+   var ctx = canvas.getContext('2d');
+   var w = canvas.width = canvas.offsetWidth;
+   var h = canvas.height = canvas.offsetHeight;
+   var circles = [];
+   var current_circle = new currentCirle(0, 0);
+   var draw = function draw() {
+       ctx.clearRect(0, 0, w, h);
+       for (var i = 0; i < circles.length; i++) {
+           circles[i].move(w, h);
+           circles[i].drawCircle(ctx);
+           for (var j = i + 1; j < circles.length; j++) {
+               circles[i].drawLine(ctx, circles[j]);
+           }
+       }
+       if (current_circle.x) {
+           current_circle.drawCircle(ctx);
+           for (var k = 1; k < circles.length; k++) {
+               current_circle.drawLine(ctx, circles[k]);
+           }
+       }
+       requestAnimationFrame(draw);
+   };
+   var init = function init(num) {
+       for (var i = 0; i < num; i++) {
+           circles.push(new Circle(Math.random() * w, Math.random() * h));
+       }
+       draw();
+   };
+   window.addEventListener('load', init(60));
+   window.onmousemove = function (e) {
+       e = e || window.event;
+       current_circle.x = e.clientX;
+       current_circle.y = e.clientY;
+   };
+   window.onmouseout = function () {
+       current_circle.x = null;
+       current_circle.y = null;
+   };
+  </script>
+</body>
+</html>
