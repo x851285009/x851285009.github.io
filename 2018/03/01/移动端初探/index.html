@@ -706,16 +706,8 @@
             databaseProvider : 'wilddog',
             databaseConfig : {
                               "rules": {
-                                "post":{
-                                  "$pid":{
-                                      ".read":true,
-                                      "content":{
-                                        ".read": true,
-                                        ".write": false
-                                        // 节点写入权限设置为否
-                                      }
-                                  }
-                                }
+                                  ".read": true,
+                                  ".write": true
                               }
                             },
             locale: 'zh-CN'
