@@ -322,8 +322,16 @@
             databaseProvider : 'wilddog',
             databaseConfig : {
                               "rules": {
-                                ".read": true,
-                                ".write": true
+                                "post":{
+                                  "$pid":{
+                                      ".read":true,
+                                      "content":{
+                                        ".read": true,
+                                        ".write": false
+                                        // 节点写入权限设置为否
+                                      }
+                                  }
+                                }
                               }
                             },
             locale: 'zh-CN'
