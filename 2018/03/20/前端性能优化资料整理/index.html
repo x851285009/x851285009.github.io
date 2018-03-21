@@ -93,7 +93,7 @@
 <meta property="og:url" content="blog.fushily.cn/2018/03/20/前端性能优化资料整理/index.html">
 <meta property="og:site_name" content="江湖夜雨十年灯">
 <meta property="og:description" content="前端性能优化资料整理 页面性能差的直接后果是用户需要等待，而等待，尤其是不确定要多长时间的等待会给用户带来焦虑，为了尽早的结束这种焦虑，除非访问网页是刚需，用户通常会选择直接关闭页面。从实际数据来看，性能差是页面高跳出率的重要原因之一。以下内容大部分来自网络并且结合个人理解持续更新">
-<meta property="og:updated_time" content="2018-03-21T10:25:55.281Z">
+<meta property="og:updated_time" content="2018-03-21T10:30:32.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化资料整理">
 <meta name="twitter:description" content="前端性能优化资料整理 页面性能差的直接后果是用户需要等待，而等待，尤其是不确定要多长时间的等待会给用户带来焦虑，为了尽早的结束这种焦虑，除非访问网页是刚需，用户通常会选择直接关闭页面。从实际数据来看，性能差是页面高跳出率的重要原因之一。以下内容大部分来自网络并且结合个人理解持续更新">
@@ -915,7 +915,29 @@
 <li>源服务器不希望缓存服务器对资源缓存时，最好在Expires字段内写入与首部字段Date相同的时间值。</li>
 <li>但是在首部字段cache-control有指定max-age指令时，比起首部字段Expires，会优先处理max-age指令</li>
 </ul>
-<p><strong>通用首部字段cache-control</strong><br>|响应指令                        |                说明               |<br>|:—————————–:|:——————————–:|<br>|max-age[秒]                    |        响应的最大age值            |<br>|no-cache                        |        缓存前必须先确认其有效性   |<br>|no-store                        |        不缓存请求或响应的任何内容 |</p>
+<p><strong>通用首部字段cache-control</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">响应指令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">max-age[秒]</td>
+<td style="text-align:center">响应的最大age值</td>
+</tr>
+<tr>
+<td style="text-align:center">no-cache</td>
+<td style="text-align:center">缓存前必须先确认其有效性</td>
+</tr>
+<tr>
+<td style="text-align:center">no-store</td>
+<td style="text-align:center">不缓存请求或响应的任何内容</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>首部字段cache-control有指定max-age指令时，比起首部字段Expires，会优先处理max-age指令</p>
 </blockquote>
