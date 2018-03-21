@@ -93,7 +93,7 @@
 <meta property="og:url" content="blog.fushily.cn/2018/03/20/前端性能优化资料整理/index.html">
 <meta property="og:site_name" content="江湖夜雨十年灯">
 <meta property="og:description" content="前端性能优化资料整理 页面性能差的直接后果是用户需要等待，而等待，尤其是不确定要多长时间的等待会给用户带来焦虑，为了尽早的结束这种焦虑，除非访问网页是刚需，用户通常会选择直接关闭页面。从实际数据来看，性能差是页面高跳出率的重要原因之一。以下内容大部分来自网络并且结合个人理解持续更新">
-<meta property="og:updated_time" content="2018-03-20T12:41:27.959Z">
+<meta property="og:updated_time" content="2018-03-21T10:25:55.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化资料整理">
 <meta name="twitter:description" content="前端性能优化资料整理 页面性能差的直接后果是用户需要等待，而等待，尤其是不确定要多长时间的等待会给用户带来焦虑，为了尽早的结束这种焦虑，除非访问网页是刚需，用户通常会选择直接关闭页面。从实际数据来看，性能差是页面高跳出率的重要原因之一。以下内容大部分来自网络并且结合个人理解持续更新">
@@ -903,6 +903,80 @@
 <li>6.全局负载均衡设备把服务器的IP地址返回给用户。    </li>
 <li>7.用户向缓存服务器发起请求，缓存服务器响应用户请求，将用户所需内容传送到用户终端。<br>如果这台缓存服务器上并没有用户想要的内容，而区域均衡设备依然将它分配给了用户，<br>那么这台服务器就要向它的上一级缓存服务器请求内容，直至追溯到网站的源服务器将内容拉到本地。</li>
 </ul>
+<hr>
+<h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><blockquote>
+<p>即便缓存服务器（客户端浏览器）内有缓存文件，也不能保证每次都会使用到对应资源的缓存，这和被缓存资源的有效性有关<br>列如客户端的要求，缓存的有效期等<br>当遇上源服务器上的资源更新时，如果还是使用不变的缓存，那就演变成返回更新前的旧资源了</p>
+</blockquote>
+<h3 id="1-客户端自己决定的缓存策略"><a href="#1-客户端自己决定的缓存策略" class="headerlink" title="1.客户端自己决定的缓存策略"></a>1.客户端自己决定的缓存策略</h3><p><strong>实体首部字段Expires(响应)</strong></p>
+<ul>
+<li>首部字段Expires会将资源失效的日期告知客户端，缓存服务器在接收到含有首部字段Expires的响应后，会以缓存来应答请求。</li>
+<li>在Expires字段值指定的时间之前，响应的副本会一直被保存。</li>
+<li>当超过指定的时间后缓存服务器在请求发送过来时，会转向源服务器请求资源。</li>
+<li>源服务器不希望缓存服务器对资源缓存时，最好在Expires字段内写入与首部字段Date相同的时间值。</li>
+<li>但是在首部字段cache-control有指定max-age指令时，比起首部字段Expires，会优先处理max-age指令</li>
+</ul>
+<p><strong>通用首部字段cache-control</strong><br>|响应指令                        |                说明               |<br>|:—————————–:|:——————————–:|<br>|max-age[秒]                    |        响应的最大age值            |<br>|no-cache                        |        缓存前必须先确认其有效性   |<br>|no-store                        |        不缓存请求或响应的任何内容 |</p>
+<blockquote>
+<p>首部字段cache-control有指定max-age指令时，比起首部字段Expires，会优先处理max-age指令</p>
+</blockquote>
+<h3 id="客户端与服务端协商的缓存策略"><a href="#客户端与服务端协商的缓存策略" class="headerlink" title="客户端与服务端协商的缓存策略"></a>客户端与服务端协商的缓存策略</h3><p><strong>实体首部字段last-modified（响应）&amp; 请求首部字段if-modified-since</strong></p>
+<ul>
+<li><p>首部last-modified指明资源最终修改的时间，一般来说，这个值就是资源被修改的时间。</p>
+</li>
+<li><p>首部字段if-modified-since</p>
+<ul>
+<li>第一次请求资源时，资源在响应头中种入last-modified字段，并随着响应体一起存到缓存中</li>
+<li>下一次需要再发送请求时，请求体中会将上一次修改时间（last-modified）种入if-modified-since字段中带到服务端，它会告知服务器:<ul>
+<li>若在if-modified-since字段值之后对应的资源都没有更新过则返回304 Not Modified状态码</li>
+<li>若在if-modified-since字段值之后  对应的资源有过更新     则希望服务器能处理成功 200<br>失败 500</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>此处的客户端与服务端协商的缓存策略一般与cache-control一块使用。需要在cache-control失效后再走这种缓存策略</p>
+</blockquote>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>1.某些服务端没有办法获取精确的修改时间，导致last-modified有问题</li>
+<li>2.文件时间修改了，但文件内容却没有变</li>
+</ul>
+<p><strong>响应首部字段etag &amp; 请求首部字段if-None-Match</strong></p>
+<ul>
+<li><p>响应首部字段etag：</p>
+<ul>
+<li>它可以告知客户端实体标识，它是一种可以将资源以字符串做唯一标识的方式，服务器会为每份资源分配对应的Etag值。</li>
+<li>另外当资源更新时，etag的值也需要更新，这个唯一标识的生成没有规定统一的算法，由服务器自行决定</li>
+</ul>
+</li>
+<li><p>请求首部字段if-None-Match</p>
+<ul>
+<li>机制和if-modified-since差不多，当if-None-Match字段与etag不一致时，就告知服务器该处理这请求</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>此处的客户端与服务端协商的缓存策略一般与cache-control一块使用。需要在cache-control失效后再走这种缓存策略</p>
+</blockquote>
+<h3 id="总结-分级缓存策略"><a href="#总结-分级缓存策略" class="headerlink" title="总结 分级缓存策略"></a>总结 分级缓存策略</h3><ul>
+<li>1.200 from cache</li>
+</ul>
+<blockquote>
+<p>这一层由exprise(http1.0)、cache-control(http1.1)控制<br>cache-control的优先级要高于exprise<br>当它们没有失效时，浏览器只能访问总结的缓存</p>
+</blockquote>
+<ul>
+<li>2.304状态</li>
+</ul>
+<blockquote>
+<p>这一层由last-modified或etag来控制，<br>etag优先级比last-modified高<br>当上一层失效时，用户刷新时浏览器会发请求给服务器，如果服务端没有变化这返回304给浏览器</p>
+</blockquote>
+<ul>
+<li>3.200状态</li>
+</ul>
+<blockquote>
+<p>当上两层都失效时，浏览器会去服务器下载最新的数据</p>
+</blockquote>
 
       
     </div>
@@ -1169,7 +1243,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端性能优化资料整理"><span class="nav-number">1.</span> <span class="nav-text">前端性能优化资料整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的基本知识以及基础渲染原理"><span class="nav-number">1.1.</span> <span class="nav-text">浏览器的基本知识以及基础渲染原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-浏览器应该有的功能"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.浏览器应该有的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-浏览器的渲染引擎"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.浏览器的渲染引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-进程-amp-线程"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.进程&线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-现代浏览器的多进程多线程模型"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.现代浏览器的多进程多线程模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染引擎"><span class="nav-number">1.2.</span> <span class="nav-text">渲染引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-主要引擎"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.主要引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-渲染过程"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-网页URL到构建DOM树的整个过程"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1.网页URL到构建DOM树的整个过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-阻塞"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.阻塞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从DOM树到可视化图像"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">3.从DOM树到可视化图像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图层-amp-重绘重排"><span class="nav-number">1.3.</span> <span class="nav-text">图层&重绘重排</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-css图层"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.css图层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-css图层创建的条件-以Chrome为基准"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.css图层创建的条件(以Chrome为基准)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-重绘-Repaint"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.重绘(Repaint)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-重排-Reflow-回流"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.重排(Reflow 回流)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-触发重绘的属性"><span class="nav-number">1.3.5.</span> <span class="nav-text">5.触发重绘的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-触发重排的属性"><span class="nav-number">1.3.6.</span> <span class="nav-text">5.触发重排的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-常见的触发重排的操作"><span class="nav-number">1.3.7.</span> <span class="nav-text">6.常见的触发重排的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-优化"><span class="nav-number">1.3.8.</span> <span class="nav-text">7.优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-使用requestAnimationFrame"><span class="nav-number">1.3.9.</span> <span class="nav-text">8.使用requestAnimationFrame</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-amp-CDN"><span class="nav-number">1.4.</span> <span class="nav-text">DNS&CDN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-DNS域名解析服务"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.DNS域名解析服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-一次完整的请求在网络层面前端需要关注什么？"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.一次完整的请求在网络层面前端需要关注什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DNS是否可以通过缓存来减少查询IP地址的时间？"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.DNS是否可以通过缓存来减少查询IP地址的时间？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-网络的请求过程怎样走最近的网络"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.网络的请求过程怎样走最近的网络</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端性能优化资料整理"><span class="nav-number">1.</span> <span class="nav-text">前端性能优化资料整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器的基本知识以及基础渲染原理"><span class="nav-number">1.1.</span> <span class="nav-text">浏览器的基本知识以及基础渲染原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-浏览器应该有的功能"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.浏览器应该有的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-浏览器的渲染引擎"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.浏览器的渲染引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-进程-amp-线程"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.进程&线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-现代浏览器的多进程多线程模型"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.现代浏览器的多进程多线程模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染引擎"><span class="nav-number">1.2.</span> <span class="nav-text">渲染引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-主要引擎"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.主要引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-渲染过程"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-网页URL到构建DOM树的整个过程"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1.网页URL到构建DOM树的整个过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-阻塞"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.阻塞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-从DOM树到可视化图像"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">3.从DOM树到可视化图像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图层-amp-重绘重排"><span class="nav-number">1.3.</span> <span class="nav-text">图层&重绘重排</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-css图层"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.css图层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-css图层创建的条件-以Chrome为基准"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.css图层创建的条件(以Chrome为基准)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-重绘-Repaint"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.重绘(Repaint)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-重排-Reflow-回流"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.重排(Reflow 回流)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-触发重绘的属性"><span class="nav-number">1.3.5.</span> <span class="nav-text">5.触发重绘的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-触发重排的属性"><span class="nav-number">1.3.6.</span> <span class="nav-text">5.触发重排的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-常见的触发重排的操作"><span class="nav-number">1.3.7.</span> <span class="nav-text">6.常见的触发重排的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-优化"><span class="nav-number">1.3.8.</span> <span class="nav-text">7.优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-使用requestAnimationFrame"><span class="nav-number">1.3.9.</span> <span class="nav-text">8.使用requestAnimationFrame</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-amp-CDN"><span class="nav-number">1.4.</span> <span class="nav-text">DNS&CDN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-DNS域名解析服务"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.DNS域名解析服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-一次完整的请求在网络层面前端需要关注什么？"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.一次完整的请求在网络层面前端需要关注什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-DNS是否可以通过缓存来减少查询IP地址的时间？"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.DNS是否可以通过缓存来减少查询IP地址的时间？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-网络的请求过程怎样走最近的网络"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.网络的请求过程怎样走最近的网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存机制"><span class="nav-number">1.5.</span> <span class="nav-text">缓存机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-客户端自己决定的缓存策略"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.客户端自己决定的缓存策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端与服务端协商的缓存策略"><span class="nav-number">1.5.2.</span> <span class="nav-text">客户端与服务端协商的缓存策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-分级缓存策略"><span class="nav-number">1.5.3.</span> <span class="nav-text">总结 分级缓存策略</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
