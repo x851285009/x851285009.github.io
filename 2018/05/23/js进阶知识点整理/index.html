@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="js重要知识点纯函数与高阶函数纯函数 1.一类特别的函数: 只要是同样的输入，必定得到同样的输出 2.必须遵守以下一些约束 a.不得改写参数 b.不能调用系统 I/O 的API c.能调用Date.now()或者Math.random()等不纯的方法   3.reducer函数必须是一个纯函数">
+<meta name="keywords" content="JavaScript,笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js进阶知识点整理">
+<meta property="og:url" content="blog.fushily.cn/2018/05/23/js进阶知识点整理/index.html">
+<meta property="og:site_name" content="江湖夜雨十年灯">
+<meta property="og:description" content="js重要知识点纯函数与高阶函数纯函数 1.一类特别的函数: 只要是同样的输入，必定得到同样的输出 2.必须遵守以下一些约束 a.不得改写参数 b.不能调用系统 I/O 的API c.能调用Date.now()或者Math.random()等不纯的方法   3.reducer函数必须是一个纯函数">
+<meta property="og:updated_time" content="2018-05-23T10:45:09.145Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js进阶知识点整理">
+<meta name="twitter:description" content="js重要知识点纯函数与高阶函数纯函数 1.一类特别的函数: 只要是同样的输入，必定得到同样的输出 2.必须遵守以下一些约束 a.不得改写参数 b.不能调用系统 I/O 的API c.能调用Date.now()或者Math.random()等不纯的方法   3.reducer函数必须是一个纯函数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="blog.fushily.cn/2018/05/23/js进阶知识点整理/"/>
+
+
+
+
+
+  <title>js进阶知识点整理 | 江湖夜雨十年灯</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+ <div class="bg_content">
+      <canvas id="canvas"></canvas>
+ </div>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/x851285009"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">江湖夜雨十年灯</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="blog.fushily.cn/2018/05/23/js进阶知识点整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="墨月">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖夜雨十年灯">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js进阶知识点整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T18:41:08+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="js重要知识点"><a href="#js重要知识点" class="headerlink" title="js重要知识点"></a>js重要知识点</h1><h2 id="纯函数与高阶函数"><a href="#纯函数与高阶函数" class="headerlink" title="纯函数与高阶函数"></a>纯函数与高阶函数</h2><h3 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a>纯函数</h3><ul>
+<li>1.一类特别的函数: 只要是同样的输入，必定得到同样的输出</li>
+<li>2.必须遵守以下一些约束<ul>
+<li>a.不得改写参数</li>
+<li>b.不能调用系统 I/O 的API</li>
+<li>c.能调用Date.now()或者Math.random()等不纯的方法</li>
+</ul>
+</li>
+<li>3.<strong>reducer函数必须是一个纯函数</strong></li>
+</ul>
+<a id="more"></a>
+<h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><ul>
+<li>1.理解: 一类特别的函数<ul>
+<li>a.情况1: 参数是函数</li>
+<li>b.情况2: 返回是函数</li>
+</ul>
+</li>
+<li>2.常见的高阶函数: <ul>
+<li>a.定时器设置函数</li>
+<li>b.数组的map()/filter()/reduce()/find()/bind()</li>
+<li>c.react-redux中的connect函数</li>
+</ul>
+</li>
+<li>3.作用: <ul>
+<li>a.能实现更加动态, 更加可扩展的功能</li>
+</ul>
+</li>
+</ul>
+<h2 id="对象内属性名用-包裹则变为变量的值"><a href="#对象内属性名用-包裹则变为变量的值" class="headerlink" title="对象内属性名用[]包裹则变为变量的值"></a>对象内属性名用[]包裹则变为变量的值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a =<span class="string">'ax'</span></div><div class="line">[a] === <span class="string">'ax'</span></div></pre></td></tr></table></figure>
+<h2 id="数组方法是否影响原数组"><a href="#数组方法是否影响原数组" class="headerlink" title="数组方法是否影响原数组"></a>数组方法是否影响原数组</h2><blockquote>
+<p>如果直接操作的是原数组,那肯定会改变。但是如果操作的是item这个参数，也就是回调函数的第一个参数，那么要看这一项是什么类型的值，基础类型的值则不会改变，引用类型的会改变</p>
+</blockquote>
+<h2 id="new操作符具体干了什么呢"><a href="#new操作符具体干了什么呢" class="headerlink" title="new操作符具体干了什么呢"></a>new操作符具体干了什么呢</h2><p><strong>其实很简单，就干了三件事情</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj  = &#123;&#125;; </div><div class="line">obj.__proto__ = Base.prototype;</div><div class="line">Base.call(obj);</div></pre></td></tr></table></figure>
+<ul>
+<li>第一行，我们创建了一个空对象obj</li>
+<li>第二行，我们将这个空对象的<strong>proto</strong>成员指向了Base函数对象prototype成员对象</li>
+<li>第三行，我们将Base函数对象的this指针替换成obj，然后再调用Base函数，于是我们就给obj对象赋值了一个id成员变量，这个成员变量的值是”base”，</li>
+</ul>
+<h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><p>instanceof 检测一个对象A是不是另一个对象B的实例的原理是：查看对象B的prototype指向的对象是否在对象A的[[prototype]]链上。如果在，则返回true,如果不在则返回false。不过有一个特殊的情况，当对象B的prototype为null将会报错(类似于空指针异常)。</p>
+<blockquote>
+<p>相对于instanceof constructor更加严谨</p>
+</blockquote>
+<h2 id="fn-的形式是函数对象形式-fn-是调用模式"><a href="#fn-的形式是函数对象形式-fn-是调用模式" class="headerlink" title="fn.的形式是函数对象形式 fn()是调用模式"></a>fn.的形式是函数对象形式 fn()是调用模式</h2><blockquote>
+<p>函数作为对象使用时函数为函数对象</p>
+</blockquote>
+<h2 id="伪数组转数组"><a href="#伪数组转数组" class="headerlink" title="伪数组转数组"></a>伪数组转数组</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = <span class="built_in">Array</span>.apply(<span class="literal">null</span>,item);</div></pre></td></tr></table></figure>
+<h2 id="对象的属性是根据对象的基地址值进行偏移"><a href="#对象的属性是根据对象的基地址值进行偏移" class="headerlink" title="对象的属性是根据对象的基地址值进行偏移"></a>对象的属性是根据对象的基地址值进行偏移</h2><h2 id="var-x-Object-create-null"><a href="#var-x-Object-create-null" class="headerlink" title="var x = Object.create(null)"></a>var x = Object.create(null)</h2><blockquote>
+<p>创建最干净的对象</p>
+</blockquote>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><blockquote>
+<p>函数是javascript中的一等公民。javascript中不分普通函数和构造函数。<br>只存在函数的普通调用和构造调用。如果函数被普通调用，那即为普通函数。<br>如果函数被构造调用，那即为构造函数。</p>
+</blockquote>
+<h2 id="js中所有的传递都是值传递-没有引用传递"><a href="#js中所有的传递都是值传递-没有引用传递" class="headerlink" title="js中所有的传递都是值传递,没有引用传递"></a>js中所有的传递都是值传递,没有引用传递</h2><ul>
+<li>基本数据类型总是通过值复制的方式来赋值/传递</li>
+<li>引用数据类型总是通过引用复制来完成赋值/传递</li>
+</ul>
+<blockquote>
+<p>改变的是地址的间相连的线</p>
+<p>堆空间栈空间的指向会断开指向其他基地址值(改变对象引用的时候)<br>基本类型没有堆空间<br>指向相同值会同步修改<br>指向改变不会影响前值</p>
+</blockquote>
+<hr>
+<h2 id="false-引用类型对比的是地址"><a href="#false-引用类型对比的是地址" class="headerlink" title="{} == {} false 引用类型对比的是地址"></a>{} == {} false 引用类型对比的是地址</h2><hr>
+<h2 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h2><p>ToPrimitive:它负责处理对象的基本化:</p>
+<ul>
+<li>检查该值是否有 toString() 方法。如果有并且返回基本类型值，就使用该值进行强制类型转换</li>
+<li>如果没有返回值不是基本数据类型</li>
+<li>检查该值是否有 valueOf() 方法，如果有并且返回基本类型值，就使用该值进行强制类型转换</li>
+<li>如果 valueOf() 和 toString() 均不返回基本类型值，会产生 TypeError 错误</li>
+</ul>
+<p>valueOf():</p>
+<ul>
+<li>JavaScript 调用 valueOf() 方法用来把对象转换成原始类型的值（数值、字符串和布尔值）。 </li>
+<li>你很少需要自己调用此函数; JavaScript 会自动调用此函数当需要转换成一个原始值时。</li>
+<li>默认情况下, valueOf()会被每个对象Object继承。每一个内置对象都会覆盖这个方法为了返回一个合理的值，</li>
+<li>如果对象没有原始值，valueOf() 就会返回对象自己</li>
+</ul>
+<p>toString():</p>
+<ul>
+<li>对普通对象来说，除非自行定义，否则 toString() 返回 内部 属性[[Class]] 的值</li>
+<li>即调用Object.prototype.toString()</li>
+<li>如果对象有自己的 toString() 方法，字符串化时就会调用该方法并使用其返回值</li>
+<li>比如数组的默认 toString() 方法经过了重新定义，将所有单元字符串化以后</li>
+<li>再用 “,” 连接起来：</li>
+</ul>
+<hr>
+<h2 id="函数调用不会改变函数的作用域链-函数的作用域是声明时候创建的-不会被修改"><a href="#函数调用不会改变函数的作用域链-函数的作用域是声明时候创建的-不会被修改" class="headerlink" title="函数调用不会改变函数的作用域链,函数的作用域是声明时候创建的,不会被修改"></a>函数调用不会改变函数的作用域链,函数的作用域是声明时候创建的,不会被修改</h2><blockquote>
+<p>作用域是在编译阶段创建的</p>
+</blockquote>
+<ul>
+<li>广义上来说：<ul>
+<li>作用域是负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限</li>
+</ul>
+</li>
+<li>狭义上来说：<ul>
+<li>作用域是程序代码中定义的一个区域,其控制着变量与参数的可见性及生命周期</li>
+</ul>
+</li>
+<li><p>总结：</p>
+<ul>
+<li>作用域与变量的读取跟存储有着密不可分的联系。</li>
+</ul>
+</li>
+<li><p>右查询(RHS)：在变量所在的作用域链中找不到声明，浏览器引擎会抛出ReferenceError: a is not defined</p>
+</li>
+<li>左查询(LHS)：在变量所在的作用域链中找不到声明，浏览器引擎会在全局作用域内声明一个</li>
+</ul>
+<blockquote>
+<p>函数每调用一次就会创建一个执行上下文栈(不会另创建作用域)压栈出栈按照先进后出的规则依次出栈</p>
+</blockquote>
+<ul>
+<li>1.在全局代码执行前, JS引擎就会创建一个栈来存储管理所有的执行上下文对象</li>
+<li>2.在全局执行上下文(window)确定后, 将其添加到栈中(压栈)</li>
+<li>3.在函数执行上下文创建后, 将其添加到栈中(压栈)</li>
+<li>4.在当前函数执行完后,将栈顶的对象移除(出栈)</li>
+<li>5.当所有的代码执行完后, 栈中只剩下window</li>
+</ul>
+<blockquote>
+<p>出栈时没执行的代码要执行完毕后才算出栈完毕<br>压栈时(函数递归等情况下)会阻止后续代码逻辑的执行等当前状态出栈时再执行没有执行的逻辑</p>
+<p>全局的执行上下文栈在页面关闭的时候出栈</p>
+</blockquote>
+<p><strong>代码示例</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="number">10</span></div><div class="line">foo(<span class="number">1</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">i</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (i == <span class="number">4</span>) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'foo() begin:'</span> + i);</div><div class="line">    foo(i + <span class="number">1</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'foo() end:'</span> + i);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 输出为:  0</span></div><div class="line"><span class="comment">// foo() begin:1</span></div><div class="line"></div><div class="line"><span class="comment">// foo() begin:2</span></div><div class="line"><span class="comment">// foo() begin:3</span></div><div class="line"><span class="comment">//此时i=4的逻辑return执行上下文出栈后面的执行上下文栈依次出栈</span></div><div class="line"><span class="comment">//出栈时执行未完成的逻辑</span></div><div class="line"><span class="comment">// foo() end:3</span></div><div class="line"><span class="comment">// foo() end:2</span></div><div class="line"><span class="comment">// foo() end:1</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>提升是指提升到本层作用域的最顶层<br>函数提升先于变量提升<br>变量的提升是声明的提升<br>函数的提升是整体的提升</p>
+<p>if判断中function 会变为函数表达式<br><strong>!千万不要在if else 这种块内部定义函数</strong></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">test();</div><div class="line"><span class="keyword">if</span>(test)&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="number">1</span>)</div><div class="line">    &#125;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">     <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="number">2</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//报错test is not a function</span></div></pre></td></tr></table></figure>
+<h2 id="this相关"><a href="#this相关" class="headerlink" title="this相关"></a>this相关</h2><p><strong>看函数调用位置上的调用形式</strong></p>
+<h3 id="详细说明如何判断函数中的this"><a href="#详细说明如何判断函数中的this" class="headerlink" title="详细说明如何判断函数中的this"></a>详细说明如何判断函数中的this</h3><ul>
+<li>1.正常情况: 执行函数的方式决定了函数中的this<ul>
+<li>直接调用: fn()       window</li>
+<li>new调用: new fn()   新创建的对象 </li>
+<li>对象调用: obj.fn()   obj对象</li>
+<li>call/apply调用: fn.call(obj)   第一个参数指定的对象</li>
+</ul>
+</li>
+<li>2.特别情况:<ul>
+<li>bind()返回的函数: fn.bind(obj)()  第一个参数指定的对象</li>
+<li>箭头函数: 使用的外部的this(内部没有自己的this)</li>
+<li>回调函数<ul>
+<li>定时器回调/ajax回调/数组遍历相关方法回调: window</li>
+<li>dom事件监听回调: dom元素</li>
+<li>组件生命周期回调: 组件对象 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="this调用方式"><a href="#this调用方式" class="headerlink" title="this调用方式:"></a>this调用方式:</h3><ul>
+<li><p>独立调用        </p>
+<ul>
+<li>this使用默认绑定规则  绑给window  严格模式底下绑给undefined</li>
+</ul>
+</li>
+<li><p>隐式调用</p>
+<ul>
+<li>this使用隐式绑定规则  绑给离他最近的调用者</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意点：隐式丢失 this指向改变</p>
+<p>只有函数对象有call,apply,find方法</p>
+</blockquote>
+<ul>
+<li>call apply bind<ul>
+<li>this使用显式绑定规则  this绑给call apply bind指定的对象</li>
+<li>call,apply<ul>
+<li>区别：第二个参数,call：列表;apply：数组</li>
+<li>共同点：第一个参数都是改变this指向的，立即调用的</li>
+</ul>
+</li>
+<li>bind<ul>
+<li>区别:bind:返回硬绑定函数，没有直接调用;(call;apply):立即调用的</li>
+<li>共同点：第一个参数都是改变this指向的</li>
+<li>返回一个新的函数,改变this指向,原函数没有发生变化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>call,apply可以让任意函数给任意对象使用</strong></p>
+</blockquote>
+<ul>
+<li>new 调用<ul>
+<li>函数是js中的一等公民，js中没有构造函数，只有函数的构造调用</li>
+<li>Array的普通调用和构造调用  —&gt;返回一个array实例</li>
+<li>包装类函数的普通调用—&gt; 强制类型转化</li>
+<li>包装类函数的构造调用—&gt; 返回包装类所对应实例</li>
+<li>this—&gt;构造出来的实例对象</li>
+</ul>
+</li>
+</ul>
+<p><strong>优先级</strong></p>
+<blockquote>
+<p>new调用 &gt; call apply bind &gt; 隐式调用 &gt; 独立调用</p>
+<p>bind绑定后无法用call apply修改this指向只能给其添加新的变量和执行函数</p>
+<p>如果你把 null 或者 undefined 作为 this 的绑定对象传入 call 、 apply 或者 bind ，<br>这些值在调用时会被忽略，实际应用的是默认绑定规则(window)</p>
+</blockquote>
+<h2 id="函数柯里化"><a href="#函数柯里化" class="headerlink" title="函数柯里化"></a>函数柯里化</h2><blockquote>
+<p>即在函数声明或者创建的时候给函数设定默认值(这个默认值可以是任意性质的)</p>
+</blockquote>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><blockquote>
+<p>闭包:当函数能够记住并且访问自己的作用域链时就会产生闭包<br>当函数发生嵌套时,如果内部函数引用了外部函数的变量时，就回产生闭包<br>闭包是一个js引擎创建的c++对象，用来管理一些数据,内部函数引用了外部函数的数据</p>
+</blockquote>
+<p><strong>闭包的生命周期</strong></p>
+<ul>
+<li>在wrap函数的执行上下文被创建时就已经创建inner的闭包</li>
+<li><p>闭包是由wrap函数创建</p>
+<ul>
+<li>由wrap裹函数将闭包交给inner函数的作用域</li>
+</ul>
+</li>
+<li><p>闭包在wrap 和 inner的执行上下文出栈时不会被清除</p>
+<ul>
+<li>inner = null 被清除</li>
+</ul>
+</li>
+<li><p>当闭包的引用计数为0的时候,自动被收回</p>
+</li>
+</ul>
+<blockquote>
+<p>闭包的值在wrap创建初期确立在连续调用中<strong>闭包的值可能会被修改</strong><br>但是在inner分开调用的时候闭包的值是不会被修改的</p>
+<p>闭包的问题:会造成内存泄露进而会导致内存溢出</p>
+</blockquote>
+<ul>
+<li>闭包在函数创建的时候创建到内层函数的作用域里</li>
+<li>包裹函数执行多少次就创建了多少个闭包</li>
+<li>但是闭包的使用时根据函数调用的时候应用的有的闭包不会重复应用</li>
+<li>闭包与对应函数有绑定关系</li>
+<li>谁调用的内层函数应用的闭包就是那层包裹函数给予的闭包值</li>
+</ul>
+<h2 id="原型-amp-amp-原型链"><a href="#原型-amp-amp-原型链" class="headerlink" title="原型&amp;&amp;原型链"></a>原型&amp;&amp;原型链</h2><ul>
+<li>Function是自己构造的</li>
+<li>属性的查找是沿着原型链找的找不到返回undefined</li>
+<li>变量查询在作用域中查询</li>
+</ul>
+<h2 id="object"><a href="#object" class="headerlink" title="object"></a>object</h2><p>对象创建的6种方式:</p>
+<ul>
+<li>Object构造</li>
+<li>字面量模式</li>
+<li>工厂模式</li>
+<li>自定义构造模式</li>
+<li>构造函数 + 原型链的混合模式</li>
+<li>Object.creat方法</li>
+</ul>
+<p>继承的两种方式:</p>
+<ul>
+<li>构造函数继承<ul>
+<li>内存消耗多,不利于类型的创建</li>
+</ul>
+</li>
+<li>原型链继承+构造函数继承<ul>
+<li>原型链继承方法,构造函数继承属性</li>
+<li>内存消耗少</li>
+<li>注意每次原型链继承时 一定要修正constructor属性！！</li>
+</ul>
+</li>
+</ul>
+<p>属性描述符:</p>
+<ul>
+<li>获取对应属性的描述符:Object.getOwnPropertyDescriptor(obj,”name”);<ul>
+<li>第一个参数：对应的对象</li>
+<li>第二个参数：对应对象的属性</li>
+</ul>
+</li>
+<li>为对象新增或修改属性:Object.defineProperty()</li>
+</ul>
+<blockquote>
+<p>defineProperty是函数对象拥有的</p>
+</blockquote>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">	<span class="attr">name</span>:<span class="string">"snw"</span></div><div class="line">&#125;;</div><div class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"age"</span>,&#123; <span class="comment">// 配置对象</span></div><div class="line">	value:<span class="number">18</span>,</div><div class="line">	<span class="attr">writable</span>:<span class="literal">true</span>,</div><div class="line">	<span class="attr">configurable</span>:<span class="literal">true</span>,</div><div class="line">	<span class="attr">emumerable</span>:<span class="literal">true</span></div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(obj); <span class="comment">//Object &#123;name: "snw", age: 18&#125;</span></div><div class="line"><span class="built_in">console</span>.log(obj.age);<span class="comment">//18</span></div></pre></td></tr></table></figure>
+<ul>
+<li>是否可以修改属性的值:writable<ul>
+<li>当writable为false时,对应的属性的值是无法修改的。<ul>
+<li>在默认情况下:继续修改的话会静默失败</li>
+<li>在严格模式下:会报错</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>决定属性是否可以配置:configurable</p>
+<ul>
+<li>当configurable为false时,对应的属性是无法重新定义的，无法删除的。但该对象是还可以继续添加属性的。</li>
+<li>不管是默认情况还是严格模式底下进行重新定义和删除都会报错</li>
+<li>注意一个小小的例外:当configurable为false时，writable可以进行重新定义，但只满足由writable：true  ==&gt; writable：false<ul>
+<li>1.是否可以重新声明<br>writable可以从true 变为 false<br>value的值只归writable管</li>
+<li>2.是否可以删除<br>delete<br>configurable:false<br>不能重新声明<br>不能删除<br>configurable:true<br>能重新声明<br>能删除</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>是否可以枚举:enumerable(原型链内的属性默认是不可被枚举的)</p>
+<ul>
+<li>判断属性是否是可枚举的:（不会遍历原型链）obj.propertyIsEnumerable(“a”)</li>
+<li>获取可枚举的属性列表:（不会遍历原型链）Object.keys(obj)</li>
+<li>获取自身(own)所有的属性列表:Object.getOwnPropertyNames(obj)</li>
+</ul>
+</li>
+</ul>
+<p>三种描述符:</p>
+<ul>
+<li>属性描述符:修饰属性的属性</li>
+<li>数据描述符:具有value和writable的属性</li>
+<li><strong>访问描述符(存取描述符)</strong>:具有get和set的属性</li>
+</ul>
+<p><strong>get&amp;set用法示例</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"age"</span>,&#123;</div><div class="line">	<span class="attr">get</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">// 当读取属性值时自动调用,根据其他数据计算返回属性值</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.__age__;</div><div class="line">	&#125;,</div><div class="line">	<span class="attr">set</span>:<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123; <span class="comment">// 当属性值发生改变时调用,监视属性值得改变,改变相关的其他数据</span></div><div class="line">		<span class="keyword">if</span>(val&gt;<span class="number">120</span>)&#123;</div><div class="line">			val =<span class="number">120</span>;</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(val&lt;<span class="number">0</span>)&#123;</div><div class="line">			val = <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">this</span>.__age__ = val;</div><div class="line">	&#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">obj.age=<span class="number">11</span>;</div><div class="line"><span class="built_in">console</span>.log(obj.age);</div><div class="line"><span class="built_in">console</span>.log(obj.__age__);</div></pre></td></tr></table></figure>
+<p>属性的查找规则:</p>
+<ul>
+<li>先在对象的直接属性中找,找到就用,</li>
+<li>没找到上隐式原型链,找到就用,</li>
+<li>没找到返回undefined</li>
+</ul>
+<p>属性的设置规则</p>
+<ul>
+<li>不管怎么样都是操作对象的直接属性</li>
+<li>讲完属性描述符后扩充这个规则</li>
+</ul>
+<p>几种对象属性的设置方法:</p>
+<ul>
+<li>常量属性</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"xxx"</span>,&#123;</div><div class="line">	<span class="attr">value</span>:<span class="string">"yyy"</span>,</div><div class="line">	<span class="attr">writable</span>:<span class="literal">false</span>,</div><div class="line">	<span class="attr">configurable</span>:<span class="literal">false</span>,</div><div class="line">	<span class="attr">enumerable</span>:<span class="literal">true</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>禁止属性扩展</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.preventExtensions(obj);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>默认情况下<br>    为对象添加新的属性会静默失败<br>严格模式底下<br>    报错<br>注意：禁止对象扩展只是禁止了对象去扩展属性，<br>而之前的属性是可以进行重新定义或者删除的，<br>属性值也是可以修改的</p>
+</blockquote>
+<ul>
+<li>密封对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.seal(obj);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>密封之后禁止了对象去扩展属性，原有的属性不可以进行重新定义或者删除，但属性值是可以修改的</p>
+</blockquote>
+<ul>
+<li>冻结对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//浅冻结</span></div><div class="line"><span class="built_in">Object</span>.freeze(obj);</div><div class="line"><span class="comment">//深度冻结   考虑一下是不是设计出了问题</span></div><div class="line"><span class="keyword">for</span> (item <span class="keyword">in</span> obj)&#123;</div><div class="line">	<span class="comment">//console.log(item)</span></div><div class="line">	<span class="built_in">Object</span>.defineProperty(<span class="built_in">Object</span>.prototype,item,&#123;</div><div class="line">		<span class="attr">writable</span>:<span class="literal">false</span>,</div><div class="line">		<span class="attr">configurable</span>:<span class="literal">false</span></div><div class="line">	&#125;)</div><div class="line">	<span class="keyword">if</span>(obj[item] <span class="keyword">instanceof</span> <span class="built_in">Object</span>)&#123;</div><div class="line">		<span class="built_in">Object</span>.freeze(obj[item]);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>冻结之后禁止了对象去扩展属性，原有的属性不可以进行重新定义或者删除，属性值不可以进行修改</p>
+<p>！in操作符是可以找到我们自定义在原型链的属性的<br>深层次的属性原型链上的属性都管不到<br>而所有的方法都可以影响对象的直接属性的<br>深层次的属性原型链上的属性都管不到</p>
+</blockquote>
+<h2 id="事件循环机制"><a href="#事件循环机制" class="headerlink" title="事件循环机制"></a>事件循环机制</h2><blockquote>
+<p>同步代码和异步代码(初始化代码,回调代码)</p>
+</blockquote>
+<p>回调代码：</p>
+<ul>
+<li>DOM事件回调 -&gt; DOM事件管理模块管理</li>
+<li>AJAX请求回调 -&gt; AJAX请求管理模块管理</li>
+<li>定时器回调 -&gt; 定时器管理模块管理</li>
+</ul>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><ul>
+<li>js引擎调起异步线程把定时器按照延迟的时间后把定时器代码放入异步队列</li>
+<li>异步队列永远都是等待同步代码执行完毕JS引擎进行轮询时再调用的</li>
+<li>定时器的延时是放入异步队列的时间而不是执行的延迟</li>
+<li>其他异步代码(回调代码)同理</li>
+</ul>
+<h3 id="堆里执行回调代码-栈内存放对象等大的数据"><a href="#堆里执行回调代码-栈内存放对象等大的数据" class="headerlink" title="堆里执行回调代码,栈内存放对象等大的数据"></a>堆里执行回调代码,栈内存放对象等大的数据</h3><h3 id="事件以及回调以及AJAX都是在主线程里执行"><a href="#事件以及回调以及AJAX都是在主线程里执行" class="headerlink" title="事件以及回调以及AJAX都是在主线程里执行"></a>事件以及回调以及AJAX都是在主线程里执行</h3><blockquote>
+<p>等待事件轮询再调用</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/07/REACT知识点整理/" rel="prev" title="REACT知识点整理">
+                REACT知识点整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+      
+      <style type="text/css">
+        .wildfire_thread a {border-bottom: none}
+      </style>
+      <div class="wildfire_thread"></div>
+      <script>
+        var wildfireConfig = () => ({
+            databaseProvider : 'wilddog',
+            locale: 'zh-CN',
+            defaultAvatarURL: 'https://image.flaticon.com/icons/svg/621/621863.svg'
+        })
+      </script>
+      <script type="text/javascript" src='https://unpkg.com/wildfire@0.3.8/dist/wildfire.auto.js'></script>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/my.png"
+                alt="墨月" />
+            
+              <p class="site-author-name" itemprop="name">墨月</p>
+              <p class="site-description motion-element" itemprop="description">满含热情的热爱前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/x851285009" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/yueshangui/activities" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-send"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/c673eb4784e6" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-commenting"></i>简书</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js重要知识点"><span class="nav-number">1.</span> <span class="nav-text">js重要知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#纯函数与高阶函数"><span class="nav-number">1.1.</span> <span class="nav-text">纯函数与高阶函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#纯函数"><span class="nav-number">1.1.1.</span> <span class="nav-text">纯函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高阶函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">高阶函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象内属性名用-包裹则变为变量的值"><span class="nav-number">1.2.</span> <span class="nav-text">对象内属性名用[]包裹则变为变量的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组方法是否影响原数组"><span class="nav-number">1.3.</span> <span class="nav-text">数组方法是否影响原数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new操作符具体干了什么呢"><span class="nav-number">1.4.</span> <span class="nav-text">new操作符具体干了什么呢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof"><span class="nav-number">1.5.</span> <span class="nav-text">instanceof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fn-的形式是函数对象形式-fn-是调用模式"><span class="nav-number">1.6.</span> <span class="nav-text">fn.的形式是函数对象形式 fn()是调用模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪数组转数组"><span class="nav-number">1.7.</span> <span class="nav-text">伪数组转数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的属性是根据对象的基地址值进行偏移"><span class="nav-number">1.8.</span> <span class="nav-text">对象的属性是根据对象的基地址值进行偏移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#var-x-Object-create-null"><span class="nav-number">1.9.</span> <span class="nav-text">var x = Object.create(null)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.10.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js中所有的传递都是值传递-没有引用传递"><span class="nav-number">1.11.</span> <span class="nav-text">js中所有的传递都是值传递,没有引用传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#false-引用类型对比的是地址"><span class="nav-number">1.12.</span> <span class="nav-text">{} == {} false 引用类型对比的是地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制类型转换"><span class="nav-number">1.13.</span> <span class="nav-text">强制类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用不会改变函数的作用域链-函数的作用域是声明时候创建的-不会被修改"><span class="nav-number">1.14.</span> <span class="nav-text">函数调用不会改变函数的作用域链,函数的作用域是声明时候创建的,不会被修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this相关"><span class="nav-number">1.15.</span> <span class="nav-text">this相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#详细说明如何判断函数中的this"><span class="nav-number">1.15.1.</span> <span class="nav-text">详细说明如何判断函数中的this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this调用方式"><span class="nav-number">1.15.2.</span> <span class="nav-text">this调用方式:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数柯里化"><span class="nav-number">1.16.</span> <span class="nav-text">函数柯里化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">1.17.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型-amp-amp-原型链"><span class="nav-number">1.18.</span> <span class="nav-text">原型&&原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#object"><span class="nav-number">1.19.</span> <span class="nav-text">object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环机制"><span class="nav-number">1.20.</span> <span class="nav-text">事件循环机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定时器"><span class="nav-number">1.20.1.</span> <span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆里执行回调代码-栈内存放对象等大的数据"><span class="nav-number">1.20.2.</span> <span class="nav-text">堆里执行回调代码,栈内存放对象等大的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件以及回调以及AJAX都是在主线程里执行"><span class="nav-number">1.20.3.</span> <span class="nav-text">事件以及回调以及AJAX都是在主线程里执行</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">墨月</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+      var wildfireConfig = () => ({
+          databaseProvider: 'wilddog',
+          databaseConfig: {
+          
+            siteId: 'wd6555249862lxthcm'
+          
+          },
+          theme: 'light',
+          locale: 'zh-CN',
+          defaultAvatarURL: 'https://image.flaticon.com/icons/svg/621/621863.svg'
+        })
+  </script>
+  <script type="text/javascript" src='https://unpkg.com/wildfire@0.3.8/dist/wildfire.auto.js'></script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script>
+  'use strict';
+   var _createClass = function () { 
+        function defineProperties(target, props) { 
+           for (var i = 0; i < props.length; i++) { 
+               var descriptor = props[i]; 
+               descriptor.enumerable = descriptor.enumerable || false; 
+               descriptor.configurable = true; 
+               if ("value" in descriptor) descriptor.writable = true; 
+               Object.defineProperty(target, descriptor.key, descriptor); 
+               } 
+            } 
+            return function (Constructor, protoProps, staticProps) { 
+                if (protoProps) defineProperties(Constructor.prototype, protoProps); 
+                if (staticProps) defineProperties(Constructor, staticProps); return Constructor; 
+                }; 
+            }();
+        function _possibleConstructorReturn(self, call) { 
+            if (!self) { 
+                throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                    } 
+                    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+                }
+        function _inherits(subClass, superClass) { 
+            if (typeof superClass !== "function" && superClass !== null) { 
+                throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); 
+                } 
+                subClass.prototype = Object.create(superClass && superClass.prototype, { 
+                    constructor: { value: subClass, enumerable: false, writable: true, configurable: true 
+                    } 
+                    }); 
+                    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; 
+                }
+        function _classCallCheck(instance, Constructor) { 
+            if (!(instance instanceof Constructor)) 
+            { 
+                throw new TypeError("Cannot call a class as a function"); 
+                } 
+            }
+   var Circle = function () {
+      function Circle(x, y) {
+           _classCallCheck(this, Circle);
+           this.x = x;
+           this.y = y;
+           this.r = Math.random() * 10;
+           this._mx = Math.random();
+           this._my = Math.random();
+       }
+      _createClass(Circle, [{
+           key: 'drawCircle',
+           value: function drawCircle(ctx) {
+               ctx.beginPath();
+               //arc() 方法使用一个中心点和半径，为一个画布的当前子路径添加一条弧。
+               ctx.arc(this.x, this.y, this.r, 0, 360);
+               ctx.closePath();
+               ctx.fillStyle = 'rgba(204, 204, 204, 0.3)';
+               ctx.fill();
+           }
+       }, {
+           key: 'drawLine',
+           value: function drawLine(ctx, _circle) {
+               var dx = this.x - _circle.x;
+               var dy = this.y - _circle.y;
+               var d = Math.sqrt(dx * dx + dy * dy);
+               if (d < 150) {
+                   ctx.beginPath();
+                   ctx.moveTo(this.x, this.y); //起始点
+                   ctx.lineTo(_circle.x, _circle.y); //终点
+                   ctx.closePath();
+                   ctx.strokeStyle = 'rgba(204, 204, 204, 0.3)';
+                   ctx.stroke();
+               }
+           }
+       }, {
+           key: 'move',
+           value: function move(w, h) {
+               this._mx = this.x < w && this.x > 0 ? this._mx : -this._mx;
+               this._my = this.y < h && this.y > 0 ? this._my : -this._my;
+               this.x += this._mx / 2;
+               this.y += this._my / 2;
+           }
+       }]);
+       return Circle;
+   }();
+   var currentCirle = function (_Circle) {
+       _inherits(currentCirle, _Circle);
+       function currentCirle(x, y) {
+           _classCallCheck(this, currentCirle);
+           return _possibleConstructorReturn(this, (currentCirle.__proto__ || Object.getPrototypeOf(currentCirle)).call(this, x, y));
+       }
+       _createClass(currentCirle, [{
+           key: 'drawCircle',
+           value: function drawCircle(ctx) {
+               ctx.beginPath();
+               //this.r = (this.r < 14 && this.r > 1) ? this.r + (Math.random() * 2 - 1) : 2;
+               this.r = 8;
+               ctx.arc(this.x, this.y, this.r, 0, 360);
+               ctx.closePath();
+               //ctx.fillStyle = 'rgba(0,0,0,' + (parseInt(Math.random() * 100) / 100) + ')'
+               ctx.fillStyle = 'rgba(204, 204, 204, 0.6)';
+               ctx.fill();
+           }
+       }]);
+       return currentCirle;
+   }(Circle);
+   window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+   var canvas = document.getElementById('canvas');
+   var ctx = canvas.getContext('2d');
+   var w = canvas.width = canvas.offsetWidth;
+   var h = canvas.height = canvas.offsetHeight;
+   window.onresize=function(){
+       w = canvas.width = canvas.offsetWidth;
+       h = canvas.height = canvas.offsetHeight;
+   }
+   var circles = [];
+   var current_circle = new currentCirle(0, 0);
+   var draw = function draw() {
+       ctx.clearRect(0, 0, w, h);
+       for (var i = 0; i < circles.length; i++) {
+           circles[i].move(w, h);
+           circles[i].drawCircle(ctx);
+           for (var j = i + 1; j < circles.length; j++) {
+               circles[i].drawLine(ctx, circles[j]);
+           }
+       }
+       if (current_circle.x) {
+           current_circle.drawCircle(ctx);
+           for (var k = 1; k < circles.length; k++) {
+               current_circle.drawLine(ctx, circles[k]);
+           }
+       }
+       requestAnimationFrame(draw);
+   };
+   var init = function init(num) {
+       for (var i = 0; i < num; i++) {
+           circles.push(new Circle(Math.random() * w, Math.random() * h));
+       }
+       draw();
+   };
+   window.addEventListener('load', init(60));
+   window.onmousemove = function (e) {
+       e = e || window.event;
+       current_circle.x = e.clientX;
+       current_circle.y = e.clientY;
+   };
+   window.onmouseout = function () {
+       current_circle.x = null;
+       current_circle.y = null;
+   };
+  </script>
+</body>
+</html>
